@@ -31,8 +31,8 @@ ENV/
 .idea/
 
 # Data
-data/processed/
-data/raw/*.pdf
+data/
+
 
 # Environment
 .env
