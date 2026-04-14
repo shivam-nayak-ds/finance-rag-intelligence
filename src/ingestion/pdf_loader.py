@@ -17,7 +17,7 @@ class FinancePDFLoader:
 
     def load_and_save(self) -> List[Document]:
         documents = []
-        # Saari PDF files load karna
+        
         pdf_files = list(self.data_path.glob("*.pdf"))
         
         for pdf in pdf_files:
@@ -34,7 +34,7 @@ class FinancePDFLoader:
         save_file = self.processed_path / "processed_data.json"
         
         try:
-            # SHI KIYA: doc variable define kiya aur metadata se quotes hataye
+            
             processed_data = [
                 {
                     "page_content": doc.page_content,
@@ -42,7 +42,7 @@ class FinancePDFLoader:
                 } for doc in documents
             ]
             
-            # SHI KIYA: File handle 'f' define kiya aur alignment theek ki
+            
             with open(save_file, "w", encoding="utf-8") as f:
                 json.dump(processed_data, f, indent=4, ensure_ascii=False)
                 
@@ -54,7 +54,7 @@ class FinancePDFLoader:
 ## Unit test block 
 
 if __name__ == "__main__":
-    # SHI KIYA: if__name__ typos theek kiye
+  
     loader = FinancePDFLoader()
     documents = loader.load_and_save()
     print(f"Successfully loaded {len(documents)} pages")

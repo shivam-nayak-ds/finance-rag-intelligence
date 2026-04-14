@@ -33,7 +33,7 @@ class IngestionPipeline:
         Coordinates the flow from raw PDF to Vector Database.
         """
         try:
-            logger.info("--- 🚀 Starting Ingestion Pipeline (Local-First) ---")
+            logger.info("---  Starting Ingestion Pipeline (Local-First) ---")
 
             # Stage 1: Extraction
             raw_docs = self.loader.load_and_save()
@@ -66,11 +66,11 @@ class IngestionPipeline:
                 metadatas=metadatas
             )
             
-            logger.info(f"--- ✅ Pipeline Completed. Stored {len(texts)} chunks. ---")
+            logger.info(f"---  Pipeline Completed. Stored {len(texts)} chunks. ---")
             return ids
 
         except Exception as e:
-            logger.error(f"--- ❌ Pipeline Failed: {str(e)} ---")
+            logger.error(f"--- Pipeline Failed: {str(e)} ---")
             return None
 
 if __name__ == "__main__":

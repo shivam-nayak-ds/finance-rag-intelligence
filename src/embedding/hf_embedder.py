@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 class FinanceEmbedder(EmbeddingFunction):
     """
     Advanced Embedding class for Finance RAG.
-    Implements ChromaDB's EmbeddingFunction interface to prevent default model downloads.
+    Strictly follows ChromaDB's EmbeddingFunction requirements.
     """
     
     def name(self) -> str:
@@ -19,7 +19,6 @@ class FinanceEmbedder(EmbeddingFunction):
 
     def __init__(self, model_name: str = "BAAI/bge-small-en-v1.5"):
         self.model_name = model_name
-        self.query_instruction = "Represent this query for retrieving relevant financial information:"
         
         logger.info(f"Loading Local Model: {self.model_name}...")
         
@@ -35,13 +34,18 @@ class FinanceEmbedder(EmbeddingFunction):
             raise
 
     def __call__(self, input: Documents) -> Embeddings:
-        """Requirement for ChromaDB EmbeddingFunction interface"""
-        # Converting list of strings to list of vectors
-        return self.embeddings.embed_documents(input)
+        """
+        Takes a list of strings (Documents/Queries) and returns a list of vectors.
+        This is the core method called by ChromaDB.
+        """
+        # Ensure we always return a list of lists of floats
+        vectors = self.embeddings.embed_documents(input)
+        return [list(map(float, v)) for v in vectors]
 
     def embed_documents(self, texts: List[str]):
         return self.embeddings.embed_documents(texts)
 
-    def embed_query(self, query: str):
-        full_query = f"{self.query_instruction} {query}"
-        return self.embeddings.embed_query(full_query)
+    def embed_query(self, input: str):
+        # LangChain's embed_query returns a single list[float]
+        vector = self.embeddings.embed_query(input)
+        return list(map(float, vector))
