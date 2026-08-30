@@ -1,0 +1,356 @@
+{
+  "metadata": {
+    "project": "SyllAIq",
+    "university": "RGPV",
+    "subject": "Operating Systems",
+    "version": "v1.0",
+    "total_questions": 20,
+    "created": "2026-08-31",
+    "categories": [
+      "concept_explanation",
+      "pyq_retrieval",
+      "topic_importance",
+      "syllabus_lookup",
+      "insufficient_context"
+    ]
+  },
+  "questions": [
+    {
+      "id": "BQ001",
+      "category": "concept_explanation",
+      "unit": 4,
+      "topic": "Deadlock",
+      "query": "What are the 4 necessary conditions for deadlock?",
+      "query_hinglish": "Deadlock ke 4 necessary conditions kya hain?",
+      "expected_answer_contains": [
+        "mutual exclusion",
+        "hold and wait",
+        "no preemption",
+        "circular wait"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["deadlock characterization", "galvin chapter", "necessary conditions"]
+    },
+    {
+      "id": "BQ002",
+      "category": "concept_explanation",
+      "unit": 4,
+      "topic": "Banker's Algorithm",
+      "query": "Explain Banker's Algorithm for deadlock avoidance with an example.",
+      "query_hinglish": "Banker's Algorithm kya hota hai deadlock avoidance ke liye?",
+      "expected_answer_contains": [
+        "safe state",
+        "available",
+        "allocation",
+        "need",
+        "maximum"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["banker's algorithm", "safe sequence", "deadlock avoidance"]
+    },
+    {
+      "id": "BQ003",
+      "category": "concept_explanation",
+      "unit": 3,
+      "topic": "Scheduling Algorithms",
+      "query": "Compare FCFS, SJF, and Round Robin scheduling algorithms.",
+      "query_hinglish": "FCFS, SJF aur Round Robin scheduling mein kya difference hai?",
+      "expected_answer_contains": [
+        "fcfs",
+        "sjf",
+        "round robin",
+        "time quantum",
+        "waiting time"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["cpu scheduling", "scheduling algorithms", "process scheduling"]
+    },
+    {
+      "id": "BQ004",
+      "category": "concept_explanation",
+      "unit": 3,
+      "topic": "Virtual Memory",
+      "query": "What is demand paging and how does a page fault occur?",
+      "query_hinglish": "Demand paging kya hota hai aur page fault kaise hota hai?",
+      "expected_answer_contains": [
+        "page fault",
+        "page table",
+        "valid invalid bit",
+        "swap"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["demand paging", "virtual memory", "page fault"]
+    },
+    {
+      "id": "BQ005",
+      "category": "concept_explanation",
+      "unit": 4,
+      "topic": "Semaphores",
+      "query": "What is the difference between binary semaphore and counting semaphore?",
+      "query_hinglish": "Binary aur counting semaphore mein kya fark hai?",
+      "expected_answer_contains": [
+        "binary semaphore",
+        "counting semaphore",
+        "mutex",
+        "wait",
+        "signal"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["semaphore", "binary semaphore", "counting semaphore"]
+    },
+    {
+      "id": "BQ006",
+      "category": "concept_explanation",
+      "unit": 3,
+      "topic": "Paging",
+      "query": "Explain paging in memory management. How is logical address translated to physical address?",
+      "query_hinglish": "Memory management mein paging kya hai? Logical se physical address kaise convert hota hai?",
+      "expected_answer_contains": [
+        "page",
+        "frame",
+        "page table",
+        "logical address",
+        "physical address",
+        "page number",
+        "offset"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["paging", "memory management", "page table", "address translation"]
+    },
+    {
+      "id": "BQ007",
+      "category": "concept_explanation",
+      "unit": 2,
+      "topic": "Disk Scheduling",
+      "query": "Explain SSTF disk scheduling algorithm with an example.",
+      "query_hinglish": "SSTF disk scheduling algorithm kya hoti hai? Example ke saath batao.",
+      "expected_answer_contains": [
+        "sstf",
+        "shortest seek time",
+        "head",
+        "seek time"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["disk scheduling", "sstf", "seek time"]
+    },
+    {
+      "id": "BQ008",
+      "category": "concept_explanation",
+      "unit": 4,
+      "topic": "Critical Section",
+      "query": "What are the three requirements of a critical section solution?",
+      "query_hinglish": "Critical section solution ke liye 3 requirements kya hain?",
+      "expected_answer_contains": [
+        "mutual exclusion",
+        "progress",
+        "bounded waiting"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["critical section", "mutual exclusion", "progress", "bounded waiting"]
+    },
+    {
+      "id": "BQ009",
+      "category": "concept_explanation",
+      "unit": 1,
+      "topic": "Types of OS",
+      "query": "What are the different types of operating systems? Explain with examples.",
+      "query_hinglish": "Operating system ke kitne types hote hain? Examples ke saath explain karo.",
+      "expected_answer_contains": [
+        "batch",
+        "time sharing",
+        "real time",
+        "distributed"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["types of operating system", "batch os", "time sharing"]
+    },
+    {
+      "id": "BQ010",
+      "category": "concept_explanation",
+      "unit": 3,
+      "topic": "Thrashing",
+      "query": "What is thrashing in virtual memory? How can it be prevented?",
+      "query_hinglish": "Thrashing kya hota hai virtual memory mein? Isse kaise rokein?",
+      "expected_answer_contains": [
+        "thrashing",
+        "page fault",
+        "working set",
+        "cpu utilization"
+      ],
+      "expected_source_type": "textbook",
+      "expected_confidence": "medium",
+      "relevant_doc_hints": ["thrashing", "virtual memory", "working set model"]
+    },
+    {
+      "id": "BQ011",
+      "category": "pyq_retrieval",
+      "unit": 4,
+      "topic": "Deadlock",
+      "query": "Show me RGPV previous year questions on deadlock.",
+      "query_hinglish": "RGPV mein deadlock ke previous year questions dikhao.",
+      "expected_answer_contains": [
+        "deadlock",
+        "marks",
+        "rgpv"
+      ],
+      "expected_source_type": "pyq",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["deadlock pyq", "rgpv exam question"]
+    },
+    {
+      "id": "BQ012",
+      "category": "pyq_retrieval",
+      "unit": 3,
+      "topic": "CPU Scheduling",
+      "query": "Give me RGPV exam questions on CPU scheduling algorithms.",
+      "query_hinglish": "CPU scheduling par RGPV ke exam questions batao.",
+      "expected_answer_contains": [
+        "scheduling",
+        "marks",
+        "rgpv"
+      ],
+      "expected_source_type": "pyq",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["scheduling pyq", "exam question"]
+    },
+    {
+      "id": "BQ013",
+      "category": "pyq_retrieval",
+      "unit": 3,
+      "topic": "Paging",
+      "query": "RGPV mein paging ya segmentation ke kya questions aaye hain?",
+      "expected_answer_contains": [
+        "paging",
+        "marks",
+        "year"
+      ],
+      "expected_source_type": "pyq",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["paging pyq", "segmentation exam"]
+    },
+    {
+      "id": "BQ014",
+      "category": "topic_importance",
+      "unit": null,
+      "topic": "All",
+      "query": "Which topics are most important for RGPV OS exam?",
+      "query_hinglish": "RGPV OS exam ke liye sabse important topics kya hain?",
+      "expected_answer_contains": [
+        "deadlock",
+        "frequently",
+        "important",
+        "scheduling"
+      ],
+      "expected_source_type": "pyq",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["topic frequency", "important topics", "pyq analysis"]
+    },
+    {
+      "id": "BQ015",
+      "category": "topic_importance",
+      "unit": 4,
+      "topic": "Unit 4 Analysis",
+      "query": "Unit 4 mein kaun se topics sabse zyada RGPV exam mein aaye hain?",
+      "expected_answer_contains": [
+        "deadlock",
+        "semaphore",
+        "unit 4"
+      ],
+      "expected_source_type": "pyq",
+      "expected_confidence": "medium",
+      "relevant_doc_hints": ["unit 4 topics", "frequency analysis"]
+    },
+    {
+      "id": "BQ016",
+      "category": "syllabus_lookup",
+      "unit": 3,
+      "topic": "Unit 3 Syllabus",
+      "query": "What topics are covered in Unit 3 of RGPV OS syllabus?",
+      "query_hinglish": "RGPV OS syllabus mein Unit 3 mein kya kya hai?",
+      "expected_answer_contains": [
+        "cpu scheduling",
+        "memory management",
+        "paging",
+        "virtual memory",
+        "unit 3"
+      ],
+      "expected_source_type": "syllabus",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["unit 3", "rgpv syllabus"]
+    },
+    {
+      "id": "BQ017",
+      "category": "syllabus_lookup",
+      "unit": 4,
+      "topic": "Unit 4 Syllabus",
+      "query": "What is covered under deadlock in the RGPV OS syllabus?",
+      "query_hinglish": "RGPV OS syllabus mein deadlock ke andar kya kya padh'na hai?",
+      "expected_answer_contains": [
+        "prevention",
+        "avoidance",
+        "detection",
+        "recovery",
+        "characterization"
+      ],
+      "expected_source_type": "syllabus",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["deadlock syllabus", "unit 4 deadlock"]
+    },
+    {
+      "id": "BQ018",
+      "category": "syllabus_lookup",
+      "unit": 2,
+      "topic": "File Systems",
+      "query": "RGPV OS syllabus mein file systems mein kya topics hain?",
+      "expected_answer_contains": [
+        "file concept",
+        "disk space allocation",
+        "directory",
+        "unit 2"
+      ],
+      "expected_source_type": "syllabus",
+      "expected_confidence": "high",
+      "relevant_doc_hints": ["file systems unit 2", "rgpv syllabus file"]
+    },
+    {
+      "id": "BQ019",
+      "category": "insufficient_context",
+      "unit": null,
+      "topic": "Out of scope",
+      "query": "Explain TCP/IP protocol stack in detail.",
+      "expected_answer_contains": [
+        "not in",
+        "outside",
+        "scope",
+        "computer networks"
+      ],
+      "expected_source_type": null,
+      "expected_confidence": "low",
+      "notes": "TCP/IP is not in RGPV OS syllabus — system should say this is out of scope"
+    },
+    {
+      "id": "BQ020",
+      "category": "insufficient_context",
+      "unit": null,
+      "topic": "Out of scope",
+      "query": "What is the latest RGPV exam timetable for 2026?",
+      "expected_answer_contains": [
+        "current",
+        "website",
+        "rgpv.ac.in"
+      ],
+      "expected_source_type": null,
+      "expected_confidence": "low",
+      "notes": "Real-time information not in local KB — should suggest official RGPV website or trigger web search in Phase 11"
+    }
+  ]
+}

@@ -1,0 +1,670 @@
+[
+  {
+    "paper_id": "RGPV_OS_JUN_2023",
+    "university": "RGPV",
+    "subject": "Operating Systems",
+    "subject_code": "AD/CD/CS-405 (GS)",
+    "year": 2023,
+    "session": "June",
+    "semester": 4,
+    "maximum_marks": 70,
+    "questions": [
+      {
+        "question_no": "1.a",
+        "unit": 1,
+        "topic": "OS Definition & Goals",
+        "marks": 7,
+        "question_text": "Define an operating system. What are the goals of an operating system? Explain.",
+        "question_text_hindi": "ऑपरेटिंग सिस्टम को परिभाषित करें। ऑपरेटिंग सिस्टम के लक्ष्य क्या हैं? व्याख्या करें।"
+      },
+      {
+        "question_no": "1.b",
+        "unit": 3,
+        "topic": "Schedulers Comparison",
+        "marks": 7,
+        "question_text": "Describe the differences among short term, medium term and long term scheduling.",
+        "question_text_hindi": "अल्पावधि, मध्यम अवधि और दीर्घावधि समय-निर्धारण में अंतरों का वर्णन कीजिए।"
+      },
+      {
+        "question_no": "2.a",
+        "unit": 1,
+        "topic": "System Calls",
+        "marks": 7,
+        "question_text": "What is meant by system call? How it can be used. How does an application program use these call during execution?",
+        "question_text_hindi": "सिस्टम कॉल का क्या अर्थ है? इसे कैसे इस्तेमाल किया जा सकता है। निष्पादन के दौरान एप्लिकेशन प्रोग्राम इन कॉल का उपयोग कैसे करता है?"
+      },
+      {
+        "question_no": "2.b",
+        "unit": 3,
+        "topic": "Process States & PCB",
+        "marks": 7,
+        "question_text": "Define Process States. Draw the diagram of PCB.",
+        "question_text_hindi": "प्रक्रिया स्टेट्स को परिभाषित करें। PCB का आरेख खींचिए।"
+      },
+      {
+        "question_no": "3.a",
+        "unit": 2,
+        "topic": "Disk Scheduling SCAN LOOK",
+        "marks": 7,
+        "question_text": "Suppose that a disk drive has 200 cylinders, numbered 0 to 199. The work queue is: 23, 89, 132, 42, 187. Determine the total distance for the following disk scheduling algorithms: i) Scan ii) Look",
+        "question_text_hindi": "मान लीजिए कि एक डिस्क ड्राइव में 200 सिलेंडर हैं, जिनकी संख्या 0 से 199 तक है। कार्य कतार है: 23, 89, 132, 42, 187। निम्नलिखित डिस्क शेड्यूलिंग एल्गोरिथम के लिए कुल दूरी निर्धारित करें: i) स्कैन ii) देखो"
+      },
+      {
+        "question_no": "3.b",
+        "unit": 2,
+        "topic": "Magnetic Tape Memory",
+        "marks": 7,
+        "question_text": "List the advantages and disadvantages of Magnetic Tape memory.",
+        "question_text_hindi": "मैग्नेटिक टेप मेमोरी के लाभ और हानियों की सूची बनाइए।"
+      },
+      {
+        "question_no": "4.a",
+        "unit": 2,
+        "topic": "Free Space Management",
+        "marks": 7,
+        "question_text": "Explain in detail about various ways of free space management.",
+        "question_text_hindi": "मुक्त स्थान प्रबंधन के विभिन्न तरीकों के बारे में विस्तार से समझाइए।"
+      },
+      {
+        "question_no": "4.b",
+        "unit": 3,
+        "topic": "Threads vs Process",
+        "marks": 7,
+        "question_text": "What is the difference between threads and process.",
+        "question_text_hindi": "थ्रेड्स और प्रोसेस में क्या अंतर है?"
+      },
+      {
+        "question_no": "5.a",
+        "unit": 3,
+        "topic": "Paging & Segmentation Fragmentation",
+        "marks": 7,
+        "question_text": "Explain paging and segmentation. How are they helpful in removing fragmentation?",
+        "question_text_hindi": "पेजिंग और सेगमेंटेशन को समझाइए। वे विखंडन को दूर करने में किस प्रकार सहायक हैं?"
+      },
+      {
+        "question_no": "5.b",
+        "unit": 4,
+        "topic": "Deadlock Prevention Tape Drives",
+        "marks": 7,
+        "question_text": "What do you mean by deadlock prevention? A computer has six tape drive with n processes competing for them. Each process need two tape drives for which values of n the system is deadlock free.",
+        "question_text_hindi": "गतिरोध निवारण से आप क्या समझते हैं? एक कम्प्यूटर में उनके लिए प्रतिस्पर्धा करने वाली प्रक्रियाओं के साथ छः टेप ड्राइव होते हैं। प्रत्येक प्रक्रिया को दो टेप ड्राइव की आवश्यकता होती है जिसके लिए n का मान सिस्टम गतिरोध मुक्त होता है।"
+      },
+      {
+        "question_no": "6.a",
+        "unit": 4,
+        "topic": "Mutual Exclusion",
+        "marks": 7,
+        "question_text": "Explain mutual exclusion with suitable example.",
+        "question_text_hindi": "पारस्परिक अपवर्जन को उपयुक्त उदाहरण सहित समझाइए।"
+      },
+      {
+        "question_no": "6.b",
+        "unit": 4,
+        "topic": "Reader-Writers Monitors",
+        "marks": 7,
+        "question_text": "Discuss Reader-Writers solution using Monitors.",
+        "question_text_hindi": "मॉनिटर्स का उपयोग करके रीडर-राइटर्स समाधान पर चर्चा करें।"
+      },
+      {
+        "question_no": "7.a",
+        "unit": 2,
+        "topic": "Linux and Windows File System",
+        "marks": 7,
+        "question_text": "Explain file system used in Linux and Windows.",
+        "question_text_hindi": "लिनक्स और विंडोज में प्रयुक्त फाइल सिस्टम को समझाइए।"
+      },
+      {
+        "question_no": "7.b",
+        "unit": 2,
+        "topic": "Directory Structures & UNIX",
+        "marks": 7,
+        "question_text": "What is a file? Briefly explain different directory structures. What kind of directory structure is used in UNIX?",
+        "question_text_hindi": "फाइल क्या है? संक्षेप में विभिन्न निर्देशिका संरचनाओं की व्याख्या करें। UNIX में किस प्रकार की निर्देशिका संरचना का उपयोग किया जाता है?"
+      },
+      {
+        "question_no": "8",
+        "unit": 1,
+        "topic": "Short Notes",
+        "marks": 7,
+        "question_text": "Write short notes: a) Concurrent Programming b) Virus c) Remote Procedure Call (RPC) d) Time Sharing",
+        "question_text_hindi": "शॉर्ट नोट्स लिखें: अ) समवर्ती प्रोग्रामिंग ब) वाइरस स) दूरस्थ प्रक्रिया कॉल (RPC) द) समय साझा"
+      }
+    ]
+  },
+  {
+    "paper_id": "RGPV_OS_NOV_2023",
+    "university": "RGPV",
+    "subject": "Operating Systems",
+    "subject_code": "AD/CD/CS-405 (GS)",
+    "year": 2023,
+    "session": "November",
+    "semester": 4,
+    "maximum_marks": 70,
+    "questions": [
+      {
+        "question_no": "1.a",
+        "unit": 1,
+        "topic": "Evolution of OS",
+        "marks": 7,
+        "question_text": "Explain the evolution of operating system in detail.",
+        "question_text_hindi": "ऑपरेटिंग सिस्टम के विकास को विस्तार से समझाइए।"
+      },
+      {
+        "question_no": "1.b",
+        "unit": 1,
+        "topic": "Buffering and Spooling",
+        "marks": 7,
+        "question_text": "Explain the concept of buffering and spooling.",
+        "question_text_hindi": "बफरिंग और स्पूलिंग की अवधारणा को समझाइए।"
+      },
+      {
+        "question_no": "2.a",
+        "unit": 2,
+        "topic": "File Attributes & Operations",
+        "marks": 7,
+        "question_text": "What is a File? Write different file attributes and operations?",
+        "question_text_hindi": "एक फाइल क्या है? विभिन्न फाइल विशेषताएँ और संचालन लिखें।"
+      },
+      {
+        "question_no": "2.b",
+        "unit": 3,
+        "topic": "FCFS vs SRTF Scheduling",
+        "marks": 7,
+        "question_text": "Compare the following CPU scheduling algorithms, highlighting the strengths and limitation of each algorithms: i) FCFS ii) SRTF",
+        "question_text_hindi": "निम्नलिखित सीपीयू शेड्यूलिंग एल्गोरिथम की तुलना करें, प्रत्येक एल्गोरिथम की ताकत और सीमा पर प्रकाश डालें: i) FCFS ii) SRTF"
+      },
+      {
+        "question_no": "3.a",
+        "unit": 2,
+        "topic": "Disk Structure Read Write",
+        "marks": 7,
+        "question_text": "Explain disk structure. How data read and write form/on disk?",
+        "question_text_hindi": "डिस्क संरचना को समझाइए। डाटा डिस्क पर कैसे पढ़ता और लिखता है?"
+      },
+      {
+        "question_no": "3.b",
+        "unit": 2,
+        "topic": "SCAN vs LOOK Disk Scheduling",
+        "marks": 7,
+        "question_text": "What is the Difference between SCAN and LOOK Disk scheduling algorithms?",
+        "question_text_hindi": "स्कैन और लुक डिस्क शेड्यूलिंग एल्गोरिथम के बीच क्या अंतर है?"
+      },
+      {
+        "question_no": "4.a",
+        "unit": 3,
+        "topic": "Process State Transition Diagram",
+        "marks": 7,
+        "question_text": "What is process state? Explain state transition diagram.",
+        "question_text_hindi": "प्रोसेस स्टेट क्या है? स्टेट ट्रांजिशन डायग्राम को समझाइए।"
+      },
+      {
+        "question_no": "4.b",
+        "unit": 3,
+        "topic": "Thread Control Block",
+        "marks": 7,
+        "question_text": "Explain Thread Control Block.",
+        "question_text_hindi": "थ्रेड कंट्रोल ब्लॉक को समझाइए।"
+      },
+      {
+        "question_no": "5.a",
+        "unit": 4,
+        "topic": "Deadlock Recovery",
+        "marks": 7,
+        "question_text": "Describe about how recovery from deadlock?",
+        "question_text_hindi": "डेडलाक से रिकवरी कैसे करें, इसके बारे में बताएं?"
+      },
+      {
+        "question_no": "5.b",
+        "unit": 3,
+        "topic": "Segmentation Address Mapping",
+        "marks": 7,
+        "question_text": "What is Segmentation? Explain virtual to physical address mapping in a segmented system with the help of a diagram.",
+        "question_text_hindi": "सेगमेंटेशन क्या है? खंडित प्रणाली में आभासी से भौतिक पता मानचित्रण को आरेख की सहायता से समझाइए।"
+      },
+      {
+        "question_no": "6.a",
+        "unit": 4,
+        "topic": "Dining Philosopher Semaphore",
+        "marks": 7,
+        "question_text": "Write a semaphore solution for dining philosopher's problem.",
+        "question_text_hindi": "डायनिंग फिलॉसफर की समस्या के लिए एक सेमाफोर समाधान लिखिए।"
+      },
+      {
+        "question_no": "6.b",
+        "unit": 3,
+        "topic": "Page Replacement LRU FIFO Optimal",
+        "marks": 7,
+        "question_text": "How many page faults does the LRU, FIFO and Optimal page replacement algorithm produce 7 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1 assume frame size is 3?",
+        "question_text_hindi": "LRU, FIFO और ऑप्टिमल पेज रिप्लेसमेंट एल्गोरिथम कितने पृष्ठ दोष उत्पन्न करता है 7 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1 मान लें कि फ्रेम का आकार 3 है?"
+      },
+      {
+        "question_no": "7.a",
+        "unit": 3,
+        "topic": "Virtual Memory & Non-contiguous Storage",
+        "marks": 7,
+        "question_text": "Explain virtual memory in operating system. Discuss the advantages and disadvantages of non contiguous storage allocation.",
+        "question_text_hindi": "ऑपरेटिंग सिस्टम में वर्चुअल मेमोरी को समझाइए। गैर सन्निहित भंडारण आवंटन के लाभ और हानियों पर चर्चा करें।"
+      },
+      {
+        "question_no": "7.b",
+        "unit": 5,
+        "topic": "Distributed OS Design Issues",
+        "marks": 7,
+        "question_text": "Discuss the design issues of distributed operating system.",
+        "question_text_hindi": "वितरित ऑपरेटिंग सिस्टम के डिजाइन मुद्दों पर चर्चा करें।"
+      },
+      {
+        "question_no": "8",
+        "unit": 1,
+        "topic": "Short Notes",
+        "marks": 7,
+        "question_text": "Write short notes: a) Worms and Virus b) Demand paging c) Batch processing d) Time-sharing",
+        "question_text_hindi": "शॉर्ट नोट्स लिखें: अ) वार्म और वायरस ब) डिमांड पेजिंग स) प्रचय संसाधन द) समय साझा"
+      }
+    ]
+  },
+  {
+    "paper_id": "RGPV_OS_JUN_2024",
+    "university": "RGPV",
+    "subject": "Operating Systems",
+    "subject_code": "AD/CD/CS/SD-405 (GS)",
+    "year": 2024,
+    "session": "June",
+    "semester": 4,
+    "maximum_marks": 70,
+    "questions": [
+      {
+        "question_no": "1.a",
+        "unit": 1,
+        "topic": "Multiprogramming Security Issues",
+        "marks": 7,
+        "question_text": "In a multiprogramming and time sharing environment several users share system simultaneously. This situation can result in various security problems. i) What are two such problems? ii) Can we ensure the same degree of security in a time shared machine as we have in a dedicated machine? Explain your answer?",
+        "question_text_hindi": "मल्टीप्रोग्रामिंग और टाइम शेयरिंग वातावरण में कई उपयोगकर्ता एक साथ सिस्टम साझा करते हैं। इस स्थिति के परिणामस्वरूप विभिन्न सुरक्षा समस्याएँ उत्पन्न हो सकती हैं: i) ऐसी दो समस्याएँ क्या हैं? ii) क्या हम टाइम शेयरिंग मशीन में उतनी ही सुरक्षा सुनिश्चित कर सकते हैं जितनी एक डेडिकेटेड मशीन में होती हैं? अपना जवाब समझाइए।"
+      },
+      {
+        "question_no": "1.b",
+        "unit": 3,
+        "topic": "Process Management OS Activities",
+        "marks": 7,
+        "question_text": "What are the five major activities of an operating system in regards to process management?",
+        "question_text_hindi": "प्रक्रिया प्रबंधन के संबंध में एक ऑपरेटिंग सिस्टम की पाँच प्रमुख गतिविधियाँ क्या हैं?"
+      },
+      {
+        "question_no": "2.a",
+        "unit": 2,
+        "topic": "File Types Tracking",
+        "marks": 7,
+        "question_text": "Why do some systems keep track of the type of file, while others leave it to the user or simply do not implement multiple file types? Which system is better?",
+        "question_text_hindi": "कुछ सिस्टम, फाइल के प्रकार पर नज़र क्यों रखते हैं, जबकि अन्य इसे उपयोगकर्ता पर छोड़ देते हैं या एकाधिक फाइल प्रकारों को लागू नहीं करते हैं? कौन सा सिस्टम बेहतर हैं?"
+      },
+      {
+        "question_no": "2.b",
+        "unit": 2,
+        "topic": "File Allocation Logical to Physical Mapping",
+        "marks": 7,
+        "question_text": "Consider a file system on a disk that has both logical and physical block sizes of 512 bytes. Assume that the information about each file is already in memory. For each of three allocation strategy (continuous, linked and indexed), how is the logical to physical address mapping accomplished in this system? (for indexed allocation - assume that a file is always less than 512 blocks long).",
+        "question_text_hindi": "एक डिस्क पर एक फाइल सिस्टम पर विचार करें जिसमें 512 बाइट्स के तार्किक और भौतिक दोनों ब्लॉक आकार हैं। मान लें कि प्रत्येक फाइल के बारे में जानकारी पहले से ही मेमोरी में हैं। तीन आवंटन रणनीतियों (निरंतर, लिंक और अनुक्रमित) में से प्रत्येक के लिए, इस प्रणाली में तार्किक से भौतिक पता मानचित्रण कैसे पूरा किया जाता हैं? (अनुक्रमित आवंटन के लिए मान लें कि एक फाइल हमेशा 512 ब्लॉक से कम लंबी होती हैं)।"
+      },
+      {
+        "question_no": "3.a",
+        "unit": 3,
+        "topic": "Thread vs Process Creation Resources",
+        "marks": 7,
+        "question_text": "What resources are used when a thread is created? How do they differ from those when a process is created?",
+        "question_text_hindi": "थ्रेड बनाते समय किन संसाधनों का उपयोग किया जाता हैं? जब कोई प्रक्रिया बनाई जाती हैं तो वे उनसे कैसे भिन्न होते हैं?"
+      },
+      {
+        "question_no": "3.b",
+        "unit": 3,
+        "topic": "Segment Table Logical Address Translation Numerical",
+        "marks": 7,
+        "question_text": "Consider the following segment table: Segment 0 (Base 219, Length 600), Segment 1 (Base 2300, Length 14), Segment 2 (Base 90, Length 100), Segment 3 (Base 1327, Length 580), Segment 4 (Base 1952, Length 96). What are the physical addresses for the following logical address? i) 0430 ii) 110 iii) 2500 iv) 3400",
+        "question_text_hindi": "निम्नलिखित खंड तालिका पर विचार करें: Segment 0 (Base 219, Length 600), Segment 1 (Base 2300, Length 14), Segment 2 (Base 90, Length 100), Segment 3 (Base 1327, Length 580), Segment 4 (Base 1952, Length 96)। निम्नलिखित तार्किक पते के लिए भौतिक पते क्या हैं? i) 0430 ii) 110 iii) 2500 iv) 3400"
+      },
+      {
+        "question_no": "4.a",
+        "unit": 4,
+        "topic": "Busy Waiting vs Blocked Waiting",
+        "marks": 7,
+        "question_text": "What is the meaning of the term busy waiting? What another kind of waiting are there in an operating system? Can busy waiting be avoided altogether? Explain your answer.",
+        "question_text_hindi": "व्यस्त प्रतीक्षा (बिजी वेटिंग) शब्द का क्या अर्थ हैं? ऑपरेटिंग सिस्टम में अन्य किस प्रकार की प्रतीक्षा होती हैं? क्या व्यस्त प्रतीक्षा (बिजी वेटिंग) से पूरी तरह बचा जा सकता हैं? अपना जवाब समझाइए।"
+      },
+      {
+        "question_no": "4.b",
+        "unit": 3,
+        "topic": "Starvation Detection and Prevention",
+        "marks": 7,
+        "question_text": "Can a system detect that some of its processes are starving? If your answer 'Yes' explain how it can? If your answer no, explain how the system can deal with the starvation problem.",
+        "question_text_hindi": "क्या कोई सिस्टम यह पता लगा सकता हैं कि उसकी कुछ प्रक्रियाएँ स्टार्विंग में हैं? यदि आपका उत्तर 'हाँ' है तो यह कैसे समझा जा सकता हैं? यदि आपका उत्तर नहीं है, तो बताइए कि सिस्टम स्टार्विंग की समस्या से कैसे निपट सकता हैं।"
+      },
+      {
+        "question_no": "5.a",
+        "unit": 5,
+        "topic": "Network Transparency",
+        "marks": 7,
+        "question_text": "What are the advantages and disadvantages of making the computer network transparent to the user?",
+        "question_text_hindi": "कम्प्यूटर नेटवर्क को उपयोगकर्ता के लिए पारदर्शी बनाने के क्या फायदे और नुकसान हैं।"
+      },
+      {
+        "question_no": "5.b",
+        "unit": 5,
+        "topic": "Distributed System Failure Types",
+        "marks": 7,
+        "question_text": "To build a robust distributed systems, you must know what kinds of failures can occurs. List three possible types of failures in a distributed system.",
+        "question_text_hindi": "एक मजबूत वितरित सिस्टम (डिस्ट्रिब्यूटेड सिस्टम) बनाने के लिए, आपको पता होना चाहिए कि किस प्रकार की विफलताएँ हो सकती हैं। वितरित प्रणाली (डिस्ट्रिब्यूटेड सिस्टम) में तीन संभावित प्रकार की विफलताओं की सूची बनाइए।"
+      },
+      {
+        "question_no": "6.a",
+        "unit": 3,
+        "topic": "Mapping Objects to Virtual Memory",
+        "marks": 7,
+        "question_text": "What are the benefits of mapping objects into virtual memory? Explain in detail.",
+        "question_text_hindi": "ऑब्जेक्ट को वर्चुअल मेमोरी में मैप करने के क्या फायदे हैं? विस्तार से व्याख्या करें।"
+      },
+      {
+        "question_no": "6.b",
+        "unit": 5,
+        "topic": "DFS vs Centralized File System",
+        "marks": 7,
+        "question_text": "What are the benefits of a DFS when compared to a file system in a centralized system?",
+        "question_text_hindi": "एक केंद्रीकृत प्रणाली में फाइल सिस्टम की तुलना में DFS के क्या लाभ हैं?"
+      },
+      {
+        "question_no": "7.a",
+        "unit": 4,
+        "topic": "Binary and Counting Semaphores",
+        "marks": 7,
+        "question_text": "Why Semaphore is important in OS? Explain Binary and counting semaphores with suitable example.",
+        "question_text_hindi": "OS में सेमाफोर क्यों महत्वपूर्ण हैं? बाइनरी और काउंटिंग सेमाफोर को उपयुक्त उदाहरण के साथ समझाइए।"
+      },
+      {
+        "question_no": "7.b",
+        "unit": 3,
+        "topic": "Overlay Dynamic Linking and Loading",
+        "marks": 7,
+        "question_text": "What is Overlay? How to dynamic linking and loading perform in memory management?",
+        "question_text_hindi": "ओवरले क्या हैं? मेमोरी प्रबंधन में डायनामिक लिंकिंग और लोडिंग कैसे करें।"
+      },
+      {
+        "question_no": "8",
+        "unit": 3,
+        "topic": "Short Notes Synchronization Paging System Calls",
+        "marks": 7,
+        "question_text": "Write short notes on following (any two): a) Synchronization b) Paging c) System Calls",
+        "question_text_hindi": "निम्नलिखित पर संक्षिप्त नोट्स लिखें (कोई दो): अ) सिंक्रोनाइजेशन ब) पेजिंग स) सिस्टम कॉल"
+      }
+    ]
+  },
+  {
+    "paper_id": "RGPV_OS_JUN_2025",
+    "university": "RGPV",
+    "subject": "Operating Systems",
+    "subject_code": "AD/CD/CS/SD-405",
+    "year": 2025,
+    "session": "June",
+    "semester": 4,
+    "maximum_marks": 70,
+    "questions": [
+      {
+        "question_no": "1.a",
+        "unit": 3,
+        "topic": "Memory Management Activities",
+        "marks": 7,
+        "question_text": "What are the five major activities of an operating system in regards to memory management?",
+        "question_text_hindi": "मेमोरी प्रबंधन के संबंध में ऑपरेटिंग सिस्टम की पाँच प्रमुख गतिविधियाँ क्या हैं?"
+      },
+      {
+        "question_no": "1.b",
+        "unit": 1,
+        "topic": "OS Functions & Management Tasks",
+        "marks": 7,
+        "question_text": "List the functions of OS. How operating system perform management task in a system?",
+        "question_text_hindi": "OS के कार्यों की सूची बनाइए। ऑपरेटिंग सिस्टम किसी सिस्टम में प्रबंधन कार्य कैसे करता है?"
+      },
+      {
+        "question_no": "2.a",
+        "unit": 2,
+        "topic": "Sequential vs Random File Access",
+        "marks": 7,
+        "question_text": "Give an example of an application in which data in a file should be accessed in following order: i) Sequentially ii) Randomly",
+        "question_text_hindi": "एक एप्लिकेशन का उदाहरण दें जिसमें फाइल में डाटा को निम्नलिखित क्रम में एक्सेस किया जाना चाहिए: i) क्रमिक रूप से ii) रैंडमली (यादृच्छिक रूप से)"
+      },
+      {
+        "question_no": "2.b",
+        "unit": 2,
+        "topic": "Disk Scheduling 5000 Cylinders SSTF SCAN LOOK",
+        "marks": 7,
+        "question_text": "Suppose that a disk drive has 5000 cylinders numbered 0 to 4999. The drive is currently serving a request at cylinder 143 and the previous request was at cylinder 125. The queue of pending request in FIFO order is: 86, 1470, 913, 1774, 948, 1509, 1022, 1750, 750, 750, 750, 130. Starting from current head position, what is the total distance that the disk arm moves to satisfy all pending request for each of following: i) SSTF ii) SCAN iii) LOOK",
+        "question_text_hindi": "मान लीजिए कि एक डिस्क ड्राइव में 5000 सिलेंडर हैं जिनकी संख्या 0 से 4999 है। ड्राइव वर्तमान में सिलेंडर 143 पर एक अनुरोध कर रहा है और पिछला अनुरोध सिलेंडर 125 पर था। फीफो क्रम में लंबित अनुरोध की कतार है: 86, 1470, 913, 1774, 948, 1509, 1022, 1750, 750, 750, 750, 130। वर्तमान शीर्ष स्थिति से प्रारंभ करते हुए, निम्नलिखित में से प्रत्येक के लिए सभी लंबित अनुरोधों को पूरा करने के लिए डिस्क आर्म द्वारा तय की गई कुल दूरी क्या है? i) SSTF ii) स्कैन iii) लुक"
+      },
+      {
+        "question_no": "3.a",
+        "unit": 3,
+        "topic": "Round Robin PCB Pointer Variant",
+        "marks": 7,
+        "question_text": "Consider a variant of the RR algorithm where the entries in the ready queue are pointers to the PCB: i) What would be the effect of putting two pointers to the same process in the ready queue? ii) What would be the major advantages and drawback of this scheme.",
+        "question_text_hindi": "RR एल्गोरिथम के एक प्रकार पर विचार करें जहाँ रेडी क्यू में प्रविष्टियाँ PCB के लिए संकेतक हैं: i) रेडी क्यू में एक ही प्रक्रिया में दो पॉइंटर्स डालने का क्या प्रभाव होगा। ii) इस योजना के प्रमुख फायदे और नुकसान क्या होंगे।"
+      },
+      {
+        "question_no": "3.b",
+        "unit": 3,
+        "topic": "Optimal Page Replacement 4 Frames Numerical",
+        "marks": 7,
+        "question_text": "How many page faults occur for an optimal page replacement strategy for the following reference string for four page frames: 1 2 3 4 5 3 4 1 6 7 8 7 8 9 7 8 9 5 4 5 4 2",
+        "question_text_hindi": "चार पेज फ्रेम के लिए निम्नलिखित संदर्भ स्ट्रिंग के लिए ऑप्टीमल पेज रिप्लेसमेंट (इष्टतम पेज प्रतिस्थापन) रणनीति के लिए कितने पेज दोष होते हैं: 1 2 3 4 5 3 4 1 6 7 8 7 8 9 7 8 9 5 4 5 4 2"
+      },
+      {
+        "question_no": "4.a",
+        "unit": 4,
+        "topic": "Mailbox IPC Sequence",
+        "marks": 7,
+        "question_text": "Suppose a process P wants to wait for two messages, one from mailbox A and one from mailbox B. What sequence of send and receive should it execute.",
+        "question_text_hindi": "मान लीजिए कि एक प्रक्रिया P दो संदेशों की प्रतीक्षा करना चाहती है, एक मेलबॉक्स A से और एक मेलबॉक्स B से। इसे भेजने और प्राप्त करने के किस क्रम को निष्पादित करना चाहिए।"
+      },
+      {
+        "question_no": "4.b",
+        "unit": 4,
+        "topic": "Interrupt Driven vs Polling IO",
+        "marks": 7,
+        "question_text": "Why might a system use interrupt driven I/O to manage a single serial port but polling I/O to manage a front end processor, such as a terminal concentrator.",
+        "question_text_hindi": "एक सिस्टम एकल सीरियल पोर्ट को प्रबंधित करने के लिए इंटरप्ट संचालित I/O का उपयोग क्यों कर सकता है, लेकिन टर्मिनल कंसंट्रेटर जैसे फ्रंट एंड प्रोसेसर को प्रबंधित करने के लिए पोलिंग I/O का उपयोग क्यों कर सकता है।"
+      },
+      {
+        "question_no": "5.a",
+        "unit": 5,
+        "topic": "Distributed System Reliable Network Design",
+        "marks": 7,
+        "question_text": "What aspects of a distributed system would you select for a system running on a totally reliable network.",
+        "question_text_hindi": "पूरी तरह से विश्वसनीय नेटवर्क पर चलने वाले सिस्टम के लिए आप डिस्ट्रीब्यूटेड सिस्टम (वितरित सिस्टम) के किन पहलुओं का चयन करें।"
+      },
+      {
+        "question_no": "5.b",
+        "unit": 5,
+        "topic": "Distributed System Failures",
+        "marks": 7,
+        "question_text": "To build robust distributed systems, you must know what kinds of failures can occur. List three possible types of failures in a distributed system.",
+        "question_text_hindi": "मजबूत डिस्ट्रीब्यूटेड सिस्टम (वितरित सिस्टम) बनाने के लिए, आपको पता होना चाहिए कि किस प्रकार की विफलताएँ हो सकती हैं। वितरित प्रणाली में तीन संभावित प्रकार की विफलताओं की सूची बनाइए।"
+      },
+      {
+        "question_no": "6.a",
+        "unit": 4,
+        "topic": "Dining Philosopher Semaphore Definition",
+        "marks": 7,
+        "question_text": "Define a semaphore for dining philosopher's problem.",
+        "question_text_hindi": "डाइनिंग दार्शनिक की समस्या के लिए सेमाफोर को परिभाषित करें।"
+      },
+      {
+        "question_no": "6.b",
+        "unit": 5,
+        "topic": "Process Migration Cross Architecture",
+        "marks": 7,
+        "question_text": "Describe a method for process migration across different architecture running: i) The same operating system ii) Different operating system",
+        "question_text_hindi": "चल रहे विभिन्न आर्किटेक्चर में प्रक्रिया माइग्रेशन के लिए विधि का वर्णन करें। i) एक ही ऑपरेटिंग सिस्टम ii) अलग-अलग ऑपरेटिंग सिस्टम"
+      },
+      {
+        "question_no": "7.a",
+        "unit": 4,
+        "topic": "Real vs Virtual Concurrency Controls",
+        "marks": 7,
+        "question_text": "Explain concurrency controls? What are the differences between real and virtual concurrency?",
+        "question_text_hindi": "कंकरेंसी कण्ट्रोल (समवर्ती नियंत्रणों) की व्याख्या करें। रियल (वास्तविक) और वर्चुअल (आभासी) समवर्ती के बीच क्या अंतर हैं?"
+      },
+      {
+        "question_no": "7.b",
+        "unit": 3,
+        "topic": "Process vs Program State Diagram",
+        "marks": 7,
+        "question_text": "How process is differing from program? Describe process transition diagram in detail.",
+        "question_text_hindi": "प्रक्रिया, प्रोग्राम से किस प्रकार भिन्न है? प्रक्रिया ट्रांजिशन (संक्रमण) आरेख का विस्तार से वर्णन करें।"
+      },
+      {
+        "question_no": "8",
+        "unit": 4,
+        "topic": "Short Notes Deadlock Unix Kernel System Calls",
+        "marks": 7,
+        "question_text": "Write short notes on following (any two): a) Deadlock prevention and avoidance b) Kernel architecture in Unix c) System calls",
+        "question_text_hindi": "निम्नलिखित पर संक्षिप्त नोट्स लिखें (कोई दो): अ) डेडलॉक प्रिवेंशन और अवोइडेंस ब) यूनिक्स में कर्नल आर्किटेक्चर स) सिस्टम कॉल"
+      }
+    ]
+  },
+  {
+    "paper_id": "RGPV_OS_JUN_2026",
+    "university": "RGPV",
+    "subject": "Operating Systems",
+    "subject_code": "CS405(GS)",
+    "year": 2026,
+    "session": "June",
+    "semester": 4,
+    "maximum_marks": 70,
+    "questions": [
+      {
+        "question_no": "1.a",
+        "unit": 1,
+        "topic": "Evolution and Characteristics of Modern OS",
+        "marks": 7,
+        "question_text": "Explain the evolution and characteristics of modern operating systems.",
+        "question_text_hindi": "मॉडर्न ऑपरेटिंग सिस्टम के विकास और विशेषताओं के बारे में बताएं।"
+      },
+      {
+        "question_no": "1.b",
+        "unit": 1,
+        "topic": "OS Services & System Calls in Resource Management",
+        "marks": 7,
+        "question_text": "Discuss operating system services and the role of system calls in resource management.",
+        "question_text_hindi": "ऑपरेटिंग सिस्टम की सेवाओं और रिसोर्स मैनेजमेंट में सिस्टम कॉल्स की भूमिका पर चर्चा करें।"
+      },
+      {
+        "question_no": "2.a",
+        "unit": 2,
+        "topic": "File Systems & Disk Organization",
+        "marks": 7,
+        "question_text": "Explain file systems and disk organization.",
+        "question_text_hindi": "फाइल सिस्टम और डिस्क ऑर्गनाइजेशन के बारे में बताएं।"
+      },
+      {
+        "question_no": "2.b",
+        "unit": 2,
+        "topic": "Contiguous vs Indexed Allocation",
+        "marks": 7,
+        "question_text": "Compare contiguous and indexed file allocation methods.",
+        "question_text_hindi": "कंटीग्यूअस (लगातार) और इंडेक्सड फाइल एलोकेशन तरीकों की तुलना करें।"
+      },
+      {
+        "question_no": "3.a",
+        "unit": 3,
+        "topic": "Process Life Cycle & Management",
+        "marks": 7,
+        "question_text": "Explain the process life cycle and process management.",
+        "question_text_hindi": "प्रोसेस लाइफ साइकल और प्रोसेस मैनेजमेंट के बारे में बताएं।"
+      },
+      {
+        "question_no": "3.b",
+        "unit": 3,
+        "topic": "CPU Scheduling Algorithms Evaluation Criteria",
+        "marks": 7,
+        "question_text": "Compare common CPU scheduling algorithms and explain the criteria used for their evaluation.",
+        "question_text_hindi": "आम CPU शेड्यूलिंग एल्गोरिदम की तुलना करें और उनके मूल्यांकन के लिए इस्तेमाल होने वाले क्राइटेरिया के बारे में बताएं।"
+      },
+      {
+        "question_no": "4.a",
+        "unit": 3,
+        "topic": "Threads & Multiple Processor Scheduling",
+        "marks": 7,
+        "question_text": "Explain the concept of threads and multiple processor scheduling.",
+        "question_text_hindi": "थ्रेड्स और मल्टीपल प्रोसेसर शेड्यूलिंग के कॉन्सेप्ट को समझाएं।"
+      },
+      {
+        "question_no": "4.b",
+        "unit": 1,
+        "topic": "Process Management System Calls",
+        "marks": 7,
+        "question_text": "Discuss process management system calls and their importance.",
+        "question_text_hindi": "प्रोसेस मैनेजमेंट सिस्टम कॉल्स और उनके महत्व पर चर्चा करें।"
+      },
+      {
+        "question_no": "5.a",
+        "unit": 3,
+        "topic": "Partitioning Paging Segmentation Comparison",
+        "marks": 7,
+        "question_text": "Compare partitioning, paging and segmentation techniques.",
+        "question_text_hindi": "पार्टिशनिंग, पेजिंग और सेगमेंटेशन तकनीकों की तुलना करें।"
+      },
+      {
+        "question_no": "5.b",
+        "unit": 3,
+        "topic": "Paged Segmentation & Demand Paging",
+        "marks": 7,
+        "question_text": "Discuss paged segmentation and virtual memory with demand paging.",
+        "question_text_hindi": "डिमांड पेजिंग के साथ पेज्ड सेगमेंटेशन और वर्चुअल मेमोरी पर चर्चा करें।"
+      },
+      {
+        "question_no": "6.a",
+        "unit": 3,
+        "topic": "Overlays Dynamic Loading Linking",
+        "marks": 7,
+        "question_text": "Explain overlays, dynamic loading and dynamic linking.",
+        "question_text_hindi": "ओवरले, डायनामिक लोडिंग और डायनामिक लिंकिंग के बारे में बताएं।"
+      },
+      {
+        "question_no": "6.b",
+        "unit": 3,
+        "topic": "Large Program Execution Memory Issues",
+        "marks": 7,
+        "question_text": "Discuss memory management issues associated with large program execution.",
+        "question_text_hindi": "बड़े प्रोग्राम के एग्जीक्यूशन से जुड़ी मेमोरी मैनेजमेंट की समस्याओं पर चर्चा करें।"
+      },
+      {
+        "question_no": "7.a",
+        "unit": 4,
+        "topic": "IO Principles & Interfaces",
+        "marks": 7,
+        "question_text": "Explain I/O programming principles and I/O interfaces.",
+        "question_text_hindi": "I/O प्रोग्रामिंग के सिद्धांतों और I/O इंटरफेस के बारे में बताएं।"
+      },
+      {
+        "question_no": "7.b",
+        "unit": 4,
+        "topic": "Asynchronous vs Concurrent IO",
+        "marks": 7,
+        "question_text": "Compare asynchronous and concurrent I/O operations.",
+        "question_text_hindi": "एसिंक्रोनस और कॉनकरेंट I/O ऑपरेशन्स की तुलना करें।"
+      },
+      {
+        "question_no": "8.a",
+        "unit": 4,
+        "topic": "Semaphores Binary Counting WAIT",
+        "marks": 7,
+        "question_text": "Explain synchronization using binary and counting semaphores with WAIT operations.",
+        "question_text_hindi": "WAIT ऑपरेशन्स के साथ बाइनरी के साथ बाइनरी और काउंटिंग सेमाफोर का इस्तेमाल करके सिंक्रोनाइजेशन के बारे में बताएं।"
+      },
+      {
+        "question_no": "8.b",
+        "unit": 5,
+        "topic": "Unix Linux vs Windows OS",
+        "marks": 7,
+        "question_text": "Compare Unix/Linux and Windows operating systems.",
+        "question_text_hindi": "Unix/Linux और Windows ऑपरेटिंग सिस्टम की तुलना करें।"
+      }
+    ]
+  }
+]

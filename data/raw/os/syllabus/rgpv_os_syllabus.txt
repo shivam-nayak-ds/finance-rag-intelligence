@@ -1,0 +1,196 @@
+RGPV CSE Operating Systems — Official Syllabus
+University: RGPV (Rajiv Gandhi Proudyogiki Vishwavidyalaya)
+Branch: Computer Science and Engineering
+Subject: Operating Systems
+Subject Code: CS-503 (B.E. CSE Semester 5)
+
+================================================================================
+UNIT 1 — Introduction to Operating Systems
+================================================================================
+
+Introduction to Operating Systems:
+- Function of an Operating System
+- Evolution of Operating Systems
+- Different Types of Operating Systems (Batch, Time-Sharing, Real-Time, Distributed, Multiprocessor)
+- Desirable Characteristics and Features of an OS
+
+Operating System Services:
+- Types of Services provided by an Operating System
+- Different ways of providing these services
+- Utility Programs
+- System Calls — definition, types, and examples
+
+================================================================================
+UNIT 2 — File Systems
+================================================================================
+
+File Concept:
+- User's view of File System
+- System Programmer's view of File System
+- File attributes: name, type, location, size, protection
+
+Storage Organization:
+- Disk Organization
+- Tape Organization
+
+File System Modules:
+- Different modules of a File System
+
+Disk Space Allocation Methods:
+- Contiguous Allocation
+- Linked Allocation
+- Indexed Allocation
+- Comparison of allocation methods
+
+Directory Structures:
+- Single-level directory
+- Two-level directory
+- Tree-structured directory
+- Acyclic-graph directory
+- General graph directory
+
+File Protection:
+- Access types
+- Access control
+
+System Calls for File Management
+
+Disk Scheduling Algorithms:
+- FCFS (First Come First Serve)
+- SSTF (Shortest Seek Time First)
+- SCAN
+- C-SCAN
+- LOOK and C-LOOK
+- Comparison of disk scheduling algorithms
+
+================================================================================
+UNIT 3 — CPU Scheduling and Memory Management
+================================================================================
+
+CPU Scheduling:
+- Process Concept — process definition, PCB (Process Control Block)
+- Scheduling Concepts — CPU-I/O burst cycle
+- Types of Schedulers — Long-term, Short-term, Medium-term
+- Process State Diagram — New, Ready, Running, Waiting, Terminated
+
+Scheduling Algorithms:
+- FCFS (First Come First Serve)
+- SJF (Shortest Job First) — preemptive and non-preemptive
+- Round Robin
+- Priority Scheduling — preemptive and non-preemptive
+- Multilevel Queue Scheduling
+- Multilevel Feedback Queue
+
+Algorithm Evaluation:
+- Criteria: CPU utilization, throughput, turnaround time, waiting time, response time
+- Deterministic modeling, queueing models
+
+System Calls for Process Management
+
+Multiple Processor Scheduling
+
+Concept of Threads:
+- Single-threaded vs multi-threaded processes
+- Benefits of threads
+- User-level threads vs kernel-level threads
+
+Memory Management:
+- Different Memory Management Techniques
+- Partitioning (Fixed and Variable)
+- Swapping
+- Segmentation
+- Paging — page table, page size, internal fragmentation
+- Paged Segmentation
+- Comparison of these techniques
+
+Techniques for Supporting Execution of Large Programs:
+- Overlay
+- Dynamic Linking and Loading
+
+Virtual Memory:
+- Concept of Virtual Memory
+- Implementation by Demand Paging
+- Page Fault handling
+- Page Replacement Algorithms — FIFO, Optimal, LRU, LFU
+- Thrashing — causes and solutions
+- Working Set Model
+
+================================================================================
+UNIT 4 — I/O Management, Concurrent Processes, and Deadlocks
+================================================================================
+
+Input / Output:
+- Principles of I/O
+- Programming I/O
+- I/O Problems
+- Asynchronous Operations
+- Speed Gap between CPU and I/O devices
+- Format Conversion
+- I/O Interfaces
+
+Types of I/O:
+- Programme Controlled I/O (Polling)
+- Interrupt Driven I/O
+- DMA (Direct Memory Access)
+- Concurrent I/O
+
+Concurrent Processes:
+- Real and Virtual Concurrency
+- Mutual Exclusion — definition and requirements
+- Synchronization
+- Inter-Process Communication (IPC) — shared memory, message passing
+
+Critical Section Problem:
+- Definition and requirements (Mutual Exclusion, Progress, Bounded Waiting)
+- Peterson's Solution
+- Hardware solutions — TestAndSet, Compare-and-Swap
+
+Semaphores:
+- Binary Semaphore (Mutex)
+- Counting Semaphore
+- WAIT (P) and SIGNAL (V) Operations
+- Implementation of semaphores
+- Classical problems — Producer-Consumer, Reader-Writer, Dining Philosophers
+
+Deadlocks:
+- Deadlock Problem — definition and example
+- Characterization of Deadlock:
+  - Necessary Conditions: Mutual Exclusion, Hold and Wait, No Preemption, Circular Wait
+  - Resource Allocation Graph
+- Deadlock Prevention — negating each necessary condition
+- Deadlock Avoidance — Banker's Algorithm (Resource Allocation Graph Algorithm)
+- Deadlock Detection — detection algorithm, resource allocation graph
+- Deadlock Recovery — process termination, resource preemption
+
+================================================================================
+UNIT 5 — Distributed Systems and Case Studies
+================================================================================
+
+Introduction to Network Operating Systems
+
+Introduction to Distributed Operating Systems:
+- Characteristics of distributed systems
+- Network topology, communication protocols
+- Distributed file systems
+- Distributed shared memory
+
+Introduction to Multiprocessor Operating Systems:
+- Symmetric multiprocessing (SMP)
+- Processor affinity, load balancing
+
+Case Studies:
+- Unix / Linux Operating System
+  - Architecture of Unix
+  - Process management in Unix
+  - File system in Unix
+  - Shell and system calls
+- Windows Operating System
+  - Windows architecture
+  - Process and thread management
+  - Memory management in Windows
+  - Windows file system (NTFS)
+- Other Contemporary Operating Systems
+
+================================================================================
+END OF RGPV OS OFFICIAL SYLLABUS
+================================================================================

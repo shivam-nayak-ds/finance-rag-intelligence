@@ -1,0 +1,68 @@
+{
+  "university": "RGPV",
+  "branch": "CSE",
+  "subject": "Operating Systems",
+  "subject_codes": ["CS-405", "CS-503"],
+  "units": [
+    {
+      "unit_number": 1,
+      "title": "Introduction to Operating Systems",
+      "topics": [
+        "Function of an Operating System",
+        "Evolution of Operating Systems",
+        "Different Types of Operating Systems (Batch, Time-sharing, Real-Time, Distributed, Multiprocessor)",
+        "Desirable Characteristics and features of an OS",
+        "Operating System Services: Types of Services",
+        "Different ways of providing Services: Utility Programs, System Calls"
+      ]
+    },
+    {
+      "unit_number": 2,
+      "title": "File Systems & Storage Management",
+      "topics": [
+        "File Concept: User's and System Programmer's view of File System",
+        "Disk Organization and Tape Organization",
+        "Different Modules of a File System",
+        "Disk Space Allocation Methods: Contiguous, Linked, Indexed",
+        "Directory Structures and File Protection",
+        "System Calls for File Management",
+        "Disk Scheduling Algorithms (FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK)"
+      ]
+    },
+    {
+      "unit_number": 3,
+      "title": "CPU Scheduling & Memory Management",
+      "topics": [
+        "Process Concept, Scheduling Concepts, Types of Schedulers, Process State Diagram",
+        "CPU Scheduling Algorithms (FCFS, SJF, Round Robin, Priority, Multilevel Queue)",
+        "Algorithm Evaluation and System Calls for Process Management",
+        "Multiple Processor Scheduling and Concept of Threads",
+        "Memory Management Techniques: Partitioning, Swapping, Segmentation, Paging, Paged Segmentation",
+        "Techniques for Large Program Execution: Overlay, Dynamic Linking and Loading",
+        "Virtual Memory: Concept, Demand Paging, Page Faults, Page Replacement Algorithms, Thrashing"
+      ]
+    },
+    {
+      "unit_number": 4,
+      "title": "I/O Management, Concurrent Processes & Deadlocks",
+      "topics": [
+        "Input / Output: Principles, Programming, Asynchronous Operations, Speed gap, Format conversion",
+        "I/O Interfaces: Programmed I/O, Interrupt Driven I/O, Concurrent I/O, DMA",
+        "Concurrent Processes: Real & Virtual Concurrency, Mutual Exclusion, Synchronization, IPC",
+        "Critical Section Problem and Solutions",
+        "Semaphores: Binary & Counting Semaphores, WAIT & SIGNAL Operations",
+        "Deadlocks: Deadlock Problems, 4 Characterization Conditions, Prevention, Avoidance (Banker's Algorithm), Detection, Recovery"
+      ]
+    },
+    {
+      "unit_number": 5,
+      "title": "Distributed Systems & Case Studies",
+      "topics": [
+        "Introduction to Network, Distributed and Multiprocessor Operating Systems",
+        "Case Study: Unix / Linux Operating System",
+        "Case Study: Windows Operating System",
+        "Contemporary Operating Systems"
+      ]
+    }
+  ]
+}
