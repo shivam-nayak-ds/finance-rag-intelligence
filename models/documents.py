@@ -86,8 +86,7 @@ class Document(BaseModel):
     reranker_score: Optional[float] = Field(None, description="Cohere reranker relevance score")
     nli_score     : Optional[float] = Field(None, description="NLI relevance grading score")
 
-    class Config:
-        use_enum_values = True
+    model_config = {"use_enum_values": True}
 
 
 # ─────────────────────────────────────────────────────────────
@@ -152,5 +151,4 @@ class Citation(BaseModel):
             marks=doc.marks,
         )
 
-    class Config:
-        use_enum_values = True
+    model_config = {"use_enum_values": True}

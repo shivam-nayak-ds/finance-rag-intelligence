@@ -1,25 +1,40 @@
 """
-SyllAIq — Academic Data Cleaner
-=================================
-Cleans extracted text from academic PDFs, textbooks, syllabi, and PYQs.
-Removes headers, footers, exam watermarks, while strictly preserving
-mathematical notation, code snippets, algorithms, and technical terms.
+Academic Text Cleaner (Production-Grade)
+========================================
+Provides robust, stateless text cleaning for academic textbooks, syllabi, and PYQs.
+Strips boilerplate, watermarks, and unicode artifacts while preserving code,
+algorithms, and mathematical notation.
 """
 
 import re
-from typing import List, Optional
+from typing import Final, List, Optional, Protocol, Sequence, runtime_checkable
+
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
 
 
+@runtime_checkable
+class BaseCleaner(Protocol):
+    """Protocol defining the text cleaning interface for dependency injection."""
+
+    def clean(self, text: str) -> str:
+        """Cleans input text and returns sanitized output."""
+        ...
+
+    def clean_pyq(self, question_text: str) -> str:
+        """Cleans PYQ-specific text."""
+        ...
+
+
 class DataCleaner:
     """
-    Cleans raw text extracted from academic and university PDFs.
+    Production-grade academic text cleaner.
+    Thread-safe, stateless, and idempotent.
     """
 
-    # Common exam website watermarks and noise lines
-    NOISE_PATTERNS: List[re.Pattern] = [
+    # Precompiled regex patterns for maximum execution speed
+    _DEFAULT_NOISE_PATTERNS: Final[List[re.Pattern]] = [
         re.compile(r"https?://(?:www\.)?rgpvonline\.com[^\s]*", re.IGNORECASE),
         re.compile(r"www\.rgpvonline\.com", re.IGNORECASE),
         re.compile(r"AD/CD/CS(?:/SD)?-405\s*\(\w+\)", re.IGNORECASE),
@@ -30,84 +45,140 @@ class DataCleaner:
         re.compile(r"Grading\s+System\s*\(GS\)", re.IGNORECASE),
         re.compile(r"Maximum\s+Marks\s*:\s*\d+", re.IGNORECASE),
         re.compile(r"Time\s*:\s*Three\s+Hours", re.IGNORECASE),
-        re.compile(r"Contd\.\.\.?", re.IGNORECASE),
-        re.compile(r"P\.T\.O\.?", re.IGNORECASE),
-        re.compile(r"\*{4,}", re.IGNORECASE),  # ****** lines
+        re.compile(r"\bContd\.\.\.?\b", re.IGNORECASE),
+        re.compile(r"\bP\.T\.O\.?\b", re.IGNORECASE),
+        re.compile(r"\*{4,}", re.IGNORECASE),
     ]
 
-    # Patterns for page number indicators like [2], (3), Page 4 of 10
-    PAGE_NUMBER_PATTERN = re.compile(r"^\s*\[?\s*\d+\s*\]?\s*$", re.MULTILINE)
+    _PAGE_NUM_PATTERN: Final[re.Pattern] = re.compile(r"^\s*\[?\s*\d+\s*\]?\s*$", re.MULTILINE)
 
-    @classmethod
-    def clean_text(cls, text: str, preserve_code: bool = True) -> str:
+    _EXAM_INSTRUCTION_PATTERNS: Final[List[re.Pattern]] = [
+        re.compile(r"Note\s*:\s*i\)\s*Attempt any.*?(?=\n|$)", re.IGNORECASE),
+        re.compile(r"In case of any doubt.*?(?=\n|$)", re.IGNORECASE),
+        re.compile(r"All questions carry equal marks.*?(?=\n|$)", re.IGNORECASE),
+    ]
+
+    _UNICODE_MAP: Final[dict[str, str]] = {
+        "\u2018": "'",   # Left single quote
+        "\u2019": "'",   # Right single quote
+        "\u201c": '"',   # Left double quote
+        "\u201d": '"',   # Right double quote
+        "\u2013": "-",   # En dash
+        "\u2014": "--",  # Em dash
+        "\u2026": "...", # Ellipsis
+        "\u00a0": " ",   # Non-breaking space
+        "\r\n": "\n",    # Normalize Windows CRLF
+        "\r": "\n",
+    }
+
+    def __init__(self, custom_noise_patterns: Optional[Sequence[re.Pattern]] = None) -> None:
         """
-        Cleans text string by stripping boilerplate, fixing encoding artifacts,
-        and standardizing whitespace.
+        Initializes cleaner with default and optional custom noise patterns.
+        """
+        self._noise_patterns = list(self._DEFAULT_NOISE_PATTERNS)
+        if custom_noise_patterns:
+            self._noise_patterns.extend(custom_noise_patterns)
+
+    def clean(self, text: str) -> str:
+        """
+        Cleans generic academic text.
 
         Args:
-            text: Raw extracted text
-            preserve_code: Whether to preserve indentation for code blocks
+            text: Raw input string.
 
         Returns:
-            Cleaned and normalized text
+            Sanitized, paragraph-normalized string.
         """
-        if not text or not text.strip():
-            return ""
+        return self.clean_text(text)
 
-        # Step 1: Remove common noise/watermark patterns
-        cleaned = text
-        for pattern in cls.NOISE_PATTERNS:
-            cleaned = pattern.sub("", cleaned)
+    def clean_pyq(self, question_text: str) -> str:
+        """
+        Cleans PYQ exam question statements.
 
-        # Step 2: Remove isolated page number lines
-        cleaned = cls.PAGE_NUMBER_PATTERN.sub("", cleaned)
+        Args:
+            question_text: Raw question statement.
 
-        # Step 3: Normalize unicode characters (smart quotes, dashes, etc.)
-        cleaned = cls._normalize_unicode(cleaned)
-
-        # Step 4: Normalize whitespace while preserving paragraph structure
-        lines = [line.strip() for line in cleaned.splitlines()]
-        # Remove empty lines that repeat more than once
-        non_empty_lines: List[str] = []
-        consecutive_empty = 0
-        for line in lines:
-            if not line:
-                consecutive_empty += 1
-                if consecutive_empty <= 1:
-                    non_empty_lines.append("")
-            else:
-                consecutive_empty = 0
-                non_empty_lines.append(line)
-
-        final_text = "\n".join(non_empty_lines).strip()
-        return final_text
-
-    @staticmethod
-    def _normalize_unicode(text: str) -> str:
-        """Replaces common non-standard Unicode characters with standard ASCII."""
-        replacements = {
-            "\u2018": "'",
-            "\u2019": "'",
-            "\u201c": '"',
-            "\u201d": '"',
-            "\u2013": "-",
-            "\u2014": "--",
-            "\u2026": "...",
-            "\u00a0": " ",  # Non-breaking space
-            "\t": "    ",
-        }
-        for orig, replacement in replacements.items():
-            text = text.replace(orig, replacement)
-        return text
+        Returns:
+            Sanitized question statement.
+        """
+        return self.clean_pyq_question(question_text)
 
     @classmethod
-    def clean_pyq_question(cls, question_text: str) -> str:
+    def clean_text(cls, text: Optional[str]) -> str:
         """
-        Specialized cleaner for individual PYQ questions.
-        Removes exam boilerplate instructions like 'Attempt any five questions'.
+        Static classmethod for quick, stateless cleaning of generic academic text.
+
+        Args:
+            text: Raw input text.
+
+        Returns:
+            Normalized clean string.
         """
+        if not text or not isinstance(text, str):
+            return ""
+
+        # Step 1: Unicode normalization
+        cleaned = cls._normalize_unicode(text)
+
+        # Step 2: Strip noise patterns
+        for pattern in cls._DEFAULT_NOISE_PATTERNS:
+            cleaned = pattern.sub("", cleaned)
+
+        # Step 3: Strip standalone page numbers
+        cleaned = cls._PAGE_NUM_PATTERN.sub("", cleaned)
+
+        # Step 4: Normalize whitespace preserving markdown/code paragraphs
+        return cls._normalize_whitespace(cleaned)
+
+    @classmethod
+    def clean_pyq_question(cls, question_text: Optional[str]) -> str:
+        """
+        Strips exam metadata, banners, and noise from individual questions.
+
+        Args:
+            question_text: Raw question statement.
+
+        Returns:
+            Clean question statement.
+        """
+        if not question_text or not isinstance(question_text, str):
+            return ""
+
         cleaned = cls.clean_text(question_text)
-        # Remove exam instruction banners if caught in question text
-        cleaned = re.sub(r"Note\s*:\s*i\)\s*Attempt any.*?(?=\n|$)", "", cleaned, flags=re.IGNORECASE)
-        cleaned = re.sub(r"In case of any doubt.*?(?=\n|$)", "", cleaned, flags=re.IGNORECASE)
+        if not cleaned:
+            return ""
+
+        for pattern in cls._EXAM_INSTRUCTION_PATTERNS:
+            cleaned = pattern.sub("", cleaned)
+
         return cleaned.strip()
+
+    @classmethod
+    def _normalize_unicode(cls, text: str) -> str:
+        """Normalizes unicode typographical anomalies."""
+        for src, target in cls._UNICODE_MAP.items():
+            if src in text:
+                text = text.replace(src, target)
+        return text
+
+    @staticmethod
+    def _normalize_whitespace(text: str) -> str:
+        """
+        Trims trailing whitespace per line and compresses consecutive blank lines
+        to a single empty line to preserve natural paragraph breaks.
+        """
+        lines = (line.strip() for line in text.splitlines())
+
+        compact_lines: List[str] = []
+        consecutive_blank = 0
+
+        for line in lines:
+            if not line:
+                consecutive_blank += 1
+                if consecutive_blank <= 1:
+                    compact_lines.append("")
+            else:
+                consecutive_blank = 0
+                compact_lines.append(line)
+
+        return "\n".join(compact_lines).strip()

@@ -215,8 +215,8 @@ MAX_GENERATION_RETRIES = 2   # Max regeneration attempts
 # ─────────────────────────────────────────────────────────────
 # Confidence Thresholds
 # ─────────────────────────────────────────────────────────────
-CONFIDENCE_HIGH_THRESHOLD   = 0.85   # Green ✅
-CONFIDENCE_MEDIUM_THRESHOLD = 0.60   # Yellow ⚠️
+CONFIDENCE_HIGH_THRESHOLD   = 0.85   # Green 
+CONFIDENCE_MEDIUM_THRESHOLD = 0.60   # Yellow
 # Below medium → Low confidence, answer is flagged with warning
 
 # ─────────────────────────────────────────────────────────────
