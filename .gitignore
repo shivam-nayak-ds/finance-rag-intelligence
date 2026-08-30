@@ -1,38 +1,65 @@
-# Byte-compiled / optimized / DLL files
+# ─────────────────────────────────────────────────────────────
+# SyllAIq — .gitignore
+# ─────────────────────────────────────────────────────────────
+
+# Environment & Secrets
+.env
+*.key
+
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
-*.so
+*.pyo
+*.pyd
 .Python
-build/
-develop-eggs/
+*.egg-info/
 dist/
-downloads/
-eggs/
+build/
 .eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environments
-.env
-.venv
-env/
+# Virtual Environment
+.venv/
 venv/
-ENV/
-env.bak/
-venv.bak/
+env/
 
-# Data and Vector DBs
-data/
-chroma_db/
-*.json
+# Data — raw PDFs and binary databases
 *.pdf
-*.csv
+data/processed/
+data/vectorstore/
+data/syllaiq.db
+data/evaluation/results/
+
+# ChromaDB persistent store
+data/vectorstore/chroma/
+
+# BM25 index (binary)
+*.pkl
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Docker
+docker/data/
+
+# Evaluation results (generated, not committed)
+data/evaluation/results/
