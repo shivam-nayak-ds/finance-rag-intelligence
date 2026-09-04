@@ -1,14 +1,10 @@
-"""
-SyllAIq Ingestion Exceptions
-============================
-Custom exception hierarchy for the data ingestion and document processing pipeline.
-"""
+"""Exception hierarchy for document ingestion and parsing."""
 
 from typing import Optional
 
 
 class IngestionError(Exception):
-    """Base exception for all document ingestion and parsing errors."""
+    """Base exception for document ingestion and parsing errors."""
 
     def __init__(self, message: str, file_path: Optional[str] = None) -> None:
         self.file_path = file_path
@@ -18,20 +14,20 @@ class IngestionError(Exception):
 
 
 class UnsupportedFileFormatError(IngestionError):
-    """Raised when an unsupported file extension or format is passed to a loader."""
+    """Raised when an unsupported file format is provided."""
     pass
 
 
 class CorruptedFileError(IngestionError):
-    """Raised when a PDF or data file is malformed or unreadable by all parsing engines."""
+    """Raised when a file cannot be parsed by any extraction engine."""
     pass
 
 
 class DocumentParsingError(IngestionError):
-    """Raised when a document or page fails during text/metadata extraction."""
+    """Raised when an error occurs during document extraction."""
     pass
 
 
 class InvalidMetadataError(IngestionError):
-    """Raised when document metadata fails validation constraints."""
+    """Raised when document metadata validation fails."""
     pass

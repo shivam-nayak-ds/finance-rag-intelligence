@@ -1,10 +1,4 @@
-"""
-Academic Text Cleaner (Production-Grade)
-========================================
-Provides robust, stateless text cleaning for academic textbooks, syllabi, and PYQs.
-Strips boilerplate, watermarks, and unicode artifacts while preserving code,
-algorithms, and mathematical notation.
-"""
+"""Text normalization and noise filtering utilities for academic documents."""
 
 import re
 from typing import Final, List, Optional, Protocol, Sequence, runtime_checkable
@@ -16,7 +10,7 @@ logger = get_logger(__name__)
 
 @runtime_checkable
 class BaseCleaner(Protocol):
-    """Protocol defining the text cleaning interface for dependency injection."""
+    """Protocol defining the text cleaning interface."""
 
     def clean(self, text: str) -> str:
         """Cleans input text and returns sanitized output."""
@@ -28,10 +22,7 @@ class BaseCleaner(Protocol):
 
 
 class DataCleaner:
-    """
-    Production-grade academic text cleaner.
-    Thread-safe, stateless, and idempotent.
-    """
+    """Sanitizes text by removing watermarks, repeated headers/footers, and normalizing Unicode."""
 
     # Precompiled regex patterns for maximum execution speed
     _DEFAULT_NOISE_PATTERNS: Final[List[re.Pattern]] = [

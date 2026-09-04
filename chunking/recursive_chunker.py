@@ -1,10 +1,4 @@
-"""
-Recursive Academic Chunker (Production-Grade)
-==============================================
-Splits continuous academic textbook text into semantically cohesive chunks.
-Preserves page numbers, chapters, syllabus units, and topic metadata across
-every generated chunk for precise citation attribution.
-"""
+"""Recursive character-level text splitting for academic textbooks."""
 
 from typing import Final, List, Optional, Protocol, Sequence, runtime_checkable
 
@@ -17,7 +11,7 @@ logger = get_logger(__name__)
 
 @runtime_checkable
 class BaseChunker(Protocol):
-    """Protocol defining the chunking interface for loose coupling."""
+    """Protocol defining the chunking interface."""
 
     def split_document(self, document: Document) -> List[Document]:
         """Splits a single Document into one or more smaller Document chunks."""
@@ -29,10 +23,7 @@ class BaseChunker(Protocol):
 
 
 class CSRecursiveChunker:
-    """
-    Production-grade recursive text chunker for Computer Science textbooks.
-    Recursively attempts natural boundaries: paragraphs -> sentences -> words.
-    """
+    """Recursively splits textbook documents preserving metadata and structure."""
 
     # Priority order of natural text separation boundaries
     _DEFAULT_SEPARATORS: Final[List[str]] = [

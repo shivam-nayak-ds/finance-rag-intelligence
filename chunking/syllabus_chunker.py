@@ -1,9 +1,4 @@
-"""
-Syllabus Unit Chunker (Production-Grade)
-========================================
-Maintains unit-boundary integrity for university syllabus documents.
-Guarantees that each syllabus unit remains a single, comprehensive chunk.
-"""
+"""Syllabus chunking preserving unit boundaries."""
 
 from typing import List, Sequence
 
@@ -14,21 +9,10 @@ logger = get_logger(__name__)
 
 
 class SyllabusChunker:
-    """
-    Chunker for syllabus documents maintaining unit boundaries.
-    1 Syllabus Unit = 1 Chunk.
-    """
+    """Processes syllabus documents by preserving unit boundaries."""
 
     def split_document(self, document: Document) -> List[Document]:
-        """
-        Enriches a syllabus unit document as an atomic chunk.
-
-        Args:
-            document: Raw syllabus unit document.
-
-        Returns:
-            List with exactly one enriched Document chunk.
-        """
+        """Processes a single syllabus document without splitting unit contents."""
         if not document or not document.text or not document.text.strip():
             return []
 
@@ -39,13 +23,10 @@ class SyllabusChunker:
                 "char_count": len(document.text.strip()),
             }
         )
-
         return [enriched_doc]
 
     def split_documents(self, documents: Sequence[Document]) -> List[Document]:
-        """
-        Batch enriches multiple syllabus documents.
-        """
+        """Batch processes syllabus documents."""
         syllabus_chunks: List[Document] = []
         for doc in documents:
             if doc.source_type == SourceType.SYLLABUS:

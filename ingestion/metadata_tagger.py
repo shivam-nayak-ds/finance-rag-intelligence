@@ -1,9 +1,4 @@
-"""
-Academic Metadata Tagger (Production-Grade)
-===========================================
-Infers and tags syllabus unit numbers, canonical topic names, and exam metadata
-with strict schema validation and confidence scoring.
-"""
+"""Metadata tagging and syllabus unit classification for academic documents."""
 
 import re
 from typing import Dict, Final, List, Optional, Protocol, Tuple, runtime_checkable
@@ -41,10 +36,7 @@ class BaseMetadataTagger(Protocol):
 
 
 class MetadataTagger:
-    """
-    Production-grade syllabus unit and topic classifier.
-    Supports custom syllabus mappings via dependency injection.
-    """
+    """Classifies document chunks into syllabus units and canonical topics."""
 
     _FALLBACK_RULES: Final[List[Tuple[int, List[str]]]] = [
         (4, ["deadlock", "semaphore", "mutual exclusion", "critical section", "dining philosopher", "ipc"]),

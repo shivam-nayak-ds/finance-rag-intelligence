@@ -1,9 +1,4 @@
-"""
-Atomic PYQ Chunker (Production-Grade)
-=====================================
-Processes exam question papers as atomic, non-splittable units.
-Enriches each question with standard exam citation tags and metadata.
-"""
+"""Exam question chunking preserving atomic question boundaries."""
 
 from typing import List, Sequence
 
@@ -14,25 +9,13 @@ logger = get_logger(__name__)
 
 
 class PYQChunker:
-    """
-    Atomic chunker for exam previous year questions (PYQs).
-    Guarantees 1 Question = 1 Complete Chunk with rich exam metadata.
-    """
+    """Processes exam questions as atomic units without splitting question statements."""
 
     def split_document(self, document: Document) -> List[Document]:
-        """
-        Enriches an atomic PYQ document without splitting its question statement.
-
-        Args:
-            document: Raw PYQ Document.
-
-        Returns:
-            List with exactly one enriched Document chunk.
-        """
+        """Validates and prepares an atomic PYQ document."""
         if not document or not document.text or not document.text.strip():
             return []
 
-        # Ensure source_type is PYQ
         enriched_doc = document.model_copy(
             update={
                 "source_type": SourceType.PYQ,
@@ -40,13 +23,10 @@ class PYQChunker:
                 "char_count": len(document.text.strip()),
             }
         )
-
         return [enriched_doc]
 
     def split_documents(self, documents: Sequence[Document]) -> List[Document]:
-        """
-        Batch enriches multiple PYQ questions.
-        """
+        """Batch processes PYQ documents."""
         pyq_chunks: List[Document] = []
         for doc in documents:
             if doc.source_type == SourceType.PYQ:

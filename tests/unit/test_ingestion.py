@@ -1,8 +1,4 @@
-"""
-Unit Tests for Phase 1 Ingestion Pipeline
-==========================================
-Validates DataCleaner, MetadataTagger, PDFLoader, and custom exceptions.
-"""
+"""Unit tests for document ingestion and text cleaning."""
 
 import json
 import pytest

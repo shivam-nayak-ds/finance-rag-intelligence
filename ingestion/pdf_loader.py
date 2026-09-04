@@ -1,10 +1,4 @@
-"""
-Academic PDF and Document Loader (Production-Grade)
-===================================================
-High-reliability document loader with multi-engine fallback (PyMuPDF -> pdfplumber -> pypdf),
-proper resource management via context managers, per-page failure isolation,
-and comprehensive extraction statistics.
-"""
+"""Document loader supporting PDF, JSON, and text file formats with multi-engine fallback."""
 
 import json
 from dataclasses import dataclass, field
@@ -58,9 +52,7 @@ class BaseDocumentLoader(Protocol):
 
 
 class PDFLoader:
-    """
-    Production-grade document loader with automatic engine fallbacks and memory safety.
-    """
+    """Document loader supporting multi-engine PDF parsing, JSON datasets, and syllabus files."""
 
     _SUPPORTED_PDF_EXTENSIONS: Final[Set[str]] = {".pdf"}
     _SUPPORTED_DATA_EXTENSIONS: Final[Set[str]] = {".json", ".txt", ".md"}

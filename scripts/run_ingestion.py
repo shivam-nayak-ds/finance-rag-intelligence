@@ -1,17 +1,12 @@
-"""
-SyllAIq Ingestion Runner (Production-Grade)
-===========================================
-Orchestrates end-to-end ingestion with atomic file persistence,
-detailed performance timing, and structured reporting.
-"""
+"""Ingestion pipeline script for loading raw documents into standardized JSON format."""
 
 import json
 import os
+from pathlib import Path
 import sys
 import time
-from dataclasses import asdict, dataclass
-from pathlib import Path
-from typing import List, Optional
+from dataclasses import dataclass
+from typing import List
 
 # Ensure project root is on sys.path
 sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -33,7 +28,7 @@ logger = get_logger(__name__)
 
 @dataclass
 class IngestionReport:
-    """Detailed summary report for pipeline observability."""
+    """Summary metrics of the ingestion run."""
     total_documents: int
     syllabus_documents: int
     pyq_documents: int
@@ -46,16 +41,9 @@ class IngestionReport:
 
 
 def run_ingestion_pipeline() -> IngestionReport:
-    """
-    Executes the ingestion pipeline with atomic persistence and error boundaries.
-
-    Returns:
-        IngestionReport with comprehensive execution metrics.
-    """
+    """Executes ingestion across syllabus, PYQ, and textbook sources."""
     start_time = time.perf_counter()
-    logger.info("=" * 70)
-    logger.info("🚀 Starting Production Ingestion Pipeline...")
-    logger.info("=" * 70)
+    logger.info("Starting document ingestion pipeline")
 
     loader = PDFLoader(clean_extracted_text=True)
     all_documents: List[Document] = []
@@ -63,10 +51,8 @@ def run_ingestion_pipeline() -> IngestionReport:
     pyq_count = 0
     textbook_count = 0
 
-    # -------------------------------------------------------------
     # 1. Ingest Syllabus
-    # -------------------------------------------------------------
-    logger.info("\n[1/3] Ingesting RGPV OS Syllabus...")
+    logger.info("Ingesting syllabus documents from: %s", OS_SYLLABUS_PATH)
     syllabus_candidates = [
         OS_SYLLABUS_PATH / "rgpv_os_syllabus.json",
         OS_SYLLABUS_PATH / "rgpv_os_syllabus.md",
@@ -81,12 +67,10 @@ def run_ingestion_pipeline() -> IngestionReport:
                 syllabus_count = len(s_docs)
                 break
             except Exception as err:
-                logger.error(f"Failed parsing syllabus at {syllabus_path}: {err}")
+                logger.error("Failed parsing syllabus file '%s': %s", syllabus_path, err)
 
-    # -------------------------------------------------------------
-    # 2. Ingest Authentic PYQs
-    # -------------------------------------------------------------
-    logger.info("\n[2/3] Ingesting Authentic RGPV PYQ Dataset...")
+    # 2. Ingest PYQs
+    logger.info("Ingesting PYQ dataset from: %s", OS_PYQS_PATH)
     pyq_json = OS_PYQS_PATH / "rgpv_os_pyqs_dataset.json"
     if pyq_json.exists():
         try:
@@ -94,12 +78,10 @@ def run_ingestion_pipeline() -> IngestionReport:
             all_documents.extend(p_docs)
             pyq_count = len(p_docs)
         except Exception as err:
-            logger.error(f"Failed parsing PYQ dataset at {pyq_json}: {err}")
+            logger.error("Failed parsing PYQ dataset '%s': %s", pyq_json, err)
 
-    # -------------------------------------------------------------
     # 3. Ingest Textbook PDFs
-    # -------------------------------------------------------------
-    logger.info("\n[3/3] Ingesting Textbook PDFs from data/raw/os/textbook/...")
+    logger.info("Ingesting textbook PDFs from: %s", OS_TEXTBOOK_PATH)
     textbook_files = list(OS_TEXTBOOK_PATH.glob("*.pdf"))
 
     for pdf_path in textbook_files:
@@ -112,27 +94,23 @@ def run_ingestion_pipeline() -> IngestionReport:
             all_documents.extend(tb_docs)
             textbook_count += len(tb_docs)
         except Exception as err:
-            logger.error(f"Error loading textbook '{pdf_path.name}': {err}")
+            logger.error("Error loading textbook '%s': %s", pdf_path.name, err)
 
-    # -------------------------------------------------------------
-    # 4. Atomic File Write (Write to .tmp then atomic rename)
-    # -------------------------------------------------------------
+    # 4. Atomic File Write
     DATA_PROCESSED_PATH.mkdir(parents=True, exist_ok=True)
     temp_output_path = RAW_DOCUMENTS_JSON.with_suffix(".json.tmp")
-
     serialized = [doc.model_dump() for doc in all_documents]
 
     try:
         with open(temp_output_path, "w", encoding="utf-8") as f:
             json.dump(serialized, f, indent=2, ensure_ascii=False)
 
-        # Atomic file replacement
         if os.name == "nt" and RAW_DOCUMENTS_JSON.exists():
             RAW_DOCUMENTS_JSON.unlink()
         temp_output_path.rename(RAW_DOCUMENTS_JSON)
-        logger.info(f"✅ Atomically wrote {len(all_documents)} documents to '{RAW_DOCUMENTS_JSON}'")
+        logger.info("Wrote %d documents to '%s'", len(all_documents), RAW_DOCUMENTS_JSON)
     except Exception as io_err:
-        logger.critical(f"Failed to write output JSON atomically: {io_err}")
+        logger.critical("Atomic file write failed: %s", io_err)
         if temp_output_path.exists():
             temp_output_path.unlink()
         raise IngestionError(f"Atomic file write failed: {io_err}") from io_err
@@ -151,15 +129,14 @@ def run_ingestion_pipeline() -> IngestionReport:
         error_count=len(loader.stats.errors),
     )
 
-    logger.info("\n" + "=" * 70)
-    logger.info(f"🎉 Ingestion Report:")
-    logger.info(f"   • Total Documents : {report.total_documents}")
-    logger.info(f"   • Syllabus Units  : {report.syllabus_documents}")
-    logger.info(f"   • PYQ Items       : {report.pyq_documents}")
-    logger.info(f"   • Textbook Pages  : {report.textbook_documents}")
-    logger.info(f"   • Duration        : {report.duration_seconds}s")
-    logger.info(f"   • Errors Logged   : {report.error_count}")
-    logger.info("=" * 70 + "\n")
+    logger.info(
+        "Ingestion completed: %d total docs (%d textbook pages, %d PYQs, %d syllabus units) in %.2fs",
+        report.total_documents,
+        report.textbook_documents,
+        report.pyq_documents,
+        report.syllabus_documents,
+        report.duration_seconds,
+    )
 
     return report
 

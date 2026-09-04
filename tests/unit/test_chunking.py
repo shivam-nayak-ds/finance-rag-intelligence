@@ -1,9 +1,4 @@
-"""
-Unit Tests for Phase 2 Chunking Pipeline
-=========================================
-Tests CSRecursiveChunker, PYQChunker, and SyllabusChunker for metadata inheritance
-and chunk size boundaries.
-"""
+"""Unit tests for document chunking strategies."""
 
 import pytest
 from chunking.pyq_chunker import PYQChunker

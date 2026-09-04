@@ -1,21 +1,11 @@
-"""
-SyllAIq Chunking Pipeline Runner (Production-Grade)
-===================================================
-Executes the Phase 2 domain-aware chunking pipeline:
-1. Loads raw documents from data/processed/raw_documents.json
-2. Routes each document type to its specialized chunker:
-   - Textbooks -> CSRecursiveChunker (800 chars, 150 overlap, rich metadata)
-   - PYQs -> PYQChunker (1 Question = 1 Atomic Chunk)
-   - Syllabus -> SyllabusChunker (1 Unit = 1 Chunk)
-3. Atomically saves output to data/processed/chunks.json
-"""
+"""Chunking pipeline script for segmenting raw documents by source type."""
 
 import json
 import os
+from pathlib import Path
 import sys
 import time
 from dataclasses import dataclass
-from pathlib import Path
 from typing import List
 
 # Ensure project root is on sys.path
@@ -39,7 +29,7 @@ logger = get_logger(__name__)
 
 @dataclass
 class ChunkingReport:
-    """Execution summary report for Phase 2 chunking."""
+    """Summary metrics of the chunking execution."""
     total_raw_documents: int
     total_chunks_created: int
     textbook_chunks: int
@@ -51,31 +41,24 @@ class ChunkingReport:
 
 
 def run_chunking_pipeline() -> ChunkingReport:
-    """
-    Executes the chunking pipeline and writes data/processed/chunks.json.
-
-    Returns:
-        ChunkingReport with execution metrics.
-    """
+    """Executes chunking across textbook, PYQ, and syllabus raw documents."""
     start_time = time.perf_counter()
-    logger.info("=" * 70)
-    logger.info("🚀 Starting SyllAIq Domain-Aware Chunking Pipeline...")
-    logger.info("=" * 70)
+    logger.info("Starting chunking pipeline")
 
     if not RAW_DOCUMENTS_JSON.exists():
         raise FileNotFoundError(
-            f"Input file '{RAW_DOCUMENTS_JSON}' not found. Please run 'scripts/run_ingestion.py' first."
+            f"Input file '{RAW_DOCUMENTS_JSON}' not found. Run 'scripts/run_ingestion.py' first."
         )
 
     # 1. Load raw documents
-    logger.info(f"Loading raw documents from '{RAW_DOCUMENTS_JSON}'...")
+    logger.info("Loading raw documents from: %s", RAW_DOCUMENTS_JSON)
     with open(RAW_DOCUMENTS_JSON, "r", encoding="utf-8") as f:
         raw_data = json.load(f)
 
     raw_docs = [Document(**item) for item in raw_data]
-    logger.info(f"Loaded {len(raw_docs)} raw documents.")
+    logger.info("Loaded %d raw documents", len(raw_docs))
 
-    # 2. Instantiate domain-specific chunkers
+    # 2. Instantiate chunkers
     textbook_chunker = CSRecursiveChunker(
         chunk_size=TEXTBOOK_CHUNK_SIZE,
         chunk_overlap=TEXTBOOK_CHUNK_OVERLAP,
@@ -88,8 +71,7 @@ def run_chunking_pipeline() -> ChunkingReport:
     pyq_chunk_count = 0
     syllabus_chunk_count = 0
 
-    # 3. Route documents by source type
-    logger.info("\nProcessing documents with specialized chunking strategies...")
+    # 3. Process documents
     for doc in raw_docs:
         if doc.source_type == SourceType.TEXTBOOK:
             chunks = textbook_chunker.split_document(doc)
@@ -107,7 +89,6 @@ def run_chunking_pipeline() -> ChunkingReport:
             chunks = textbook_chunker.split_document(doc)
             all_chunks.extend(chunks)
 
-    # Calculate average chunk length
     total_chars = sum(len(c.text) for c in all_chunks)
     avg_length = round(total_chars / len(all_chunks), 2) if all_chunks else 0.0
 
@@ -123,9 +104,9 @@ def run_chunking_pipeline() -> ChunkingReport:
         if os.name == "nt" and CHUNKS_JSON.exists():
             CHUNKS_JSON.unlink()
         temp_output.rename(CHUNKS_JSON)
-        logger.info(f"✅ Atomically wrote {len(all_chunks)} chunks to '{CHUNKS_JSON}'")
+        logger.info("Wrote %d chunks to '%s'", len(all_chunks), CHUNKS_JSON)
     except Exception as io_err:
-        logger.critical(f"Failed writing chunks atomically: {io_err}")
+        logger.critical("Failed writing chunks atomically: %s", io_err)
         if temp_output.exists():
             temp_output.unlink()
         raise
@@ -143,16 +124,14 @@ def run_chunking_pipeline() -> ChunkingReport:
         output_file=str(CHUNKS_JSON),
     )
 
-    logger.info("\n" + "=" * 70)
-    logger.info("🎉 Chunking Pipeline Completed Successfully!")
-    logger.info(f"   • Raw Documents Read : {report.total_raw_documents}")
-    logger.info(f"   • Total Chunks Made  : {report.total_chunks_created}")
-    logger.info(f"   • Textbook Chunks    : {report.textbook_chunks} (Galvin 10th Ed)")
-    logger.info(f"   • PYQ Chunks         : {report.pyq_chunks} (Atomic Questions)")
-    logger.info(f"   • Syllabus Chunks    : {report.syllabus_chunks} (Unit Boundaries)")
-    logger.info(f"   • Avg Chunk Length   : {report.average_chunk_length} characters")
-    logger.info(f"   • Duration           : {report.duration_seconds}s")
-    logger.info("=" * 70 + "\n")
+    logger.info(
+        "Chunking completed: %d total chunks (%d textbook, %d PYQ, %d syllabus) in %.2fs",
+        report.total_chunks_created,
+        report.textbook_chunks,
+        report.pyq_chunks,
+        report.syllabus_chunks,
+        report.duration_seconds,
+    )
 
     return report
 
