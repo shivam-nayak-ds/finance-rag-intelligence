@@ -8,7 +8,7 @@ and FastAPI endpoints.
 from __future__ import annotations
 
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from models.documents import Citation, ConfidenceLevel, Intent
 
@@ -63,14 +63,15 @@ class AskRequest(BaseModel):
     subject    : str = Field(default="Operating Systems", description="Subject filter")
     session_id : Optional[str] = Field(None, description="Session ID for conversation memory")
 
-    class Config:
-        json_schema_extra = {
+    model_config = ConfigDict(
+        json_schema_extra={
             "example": {
                 "query": "Deadlock ke 4 necessary conditions kya hain?",
                 "subject": "Operating Systems",
-                "session_id": "student-abc-123"
+                "session_id": "student-abc-123",
             }
         }
+    )
 
 
 class AskResponse(BaseModel):

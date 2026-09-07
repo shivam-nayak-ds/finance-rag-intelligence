@@ -144,12 +144,17 @@ class PDFLoader:
                 unit, topic = self.tagger.tag_unit_and_topic(cleaned_text)
                 chunk_id = f"{doc_stem}_p{page_num}"
 
+                # Auto-detect chapter from text heading or page number
+                detected_chapter = chapter or self.tagger.detect_chapter(
+                    cleaned_text, page_number=page_num
+                )
+
                 doc = Document(
                     chunk_id=chunk_id,
                     text=cleaned_text,
                     source_type=source_type,
                     book=title if source_type == SourceType.TEXTBOOK else None,
-                    chapter=chapter,
+                    chapter=detected_chapter,
                     page_start=page_num,
                     page_end=page_num,
                     unit=unit,

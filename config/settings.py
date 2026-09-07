@@ -4,6 +4,9 @@ import os
 from pathlib import Path
 from typing import Final, Optional
 
+from dotenv import load_dotenv
+load_dotenv()  # Load .env automatically for all modules
+
 # Project Identity
 PROJECT_NAME: Final[str] = "SyllAIq"
 PROJECT_TAGLINE: Final[str] = "AI-Powered Exam Preparation for RGPV"
@@ -175,8 +178,8 @@ NLI_RELEVANCE_THRESHOLD = 0.4
 NLI_GROUNDEDNESS_THRESHOLD = 0.6
 
 # LLM Settings
-GROQ_MODEL = "llama-3.3-70b-versatile"
-GEMINI_MODEL = "gemini-1.5-flash"
+GROQ_MODEL = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
 LLM_TEMPERATURE = 0.1
 LLM_MAX_TOKENS = 1024
 

@@ -3,6 +3,33 @@
 import re
 from typing import Dict, Final, List, Optional, Protocol, Tuple, runtime_checkable
 
+# Galvin 10th Ed — chapter number → page range mapping
+_GALVIN_CHAPTER_PAGE_MAP: Final[Dict[int, Tuple[int, int]]] = {
+    1:  (1,   50),
+    2:  (51,  100),
+    3:  (101, 150),
+    4:  (151, 200),
+    5:  (201, 260),
+    6:  (261, 310),
+    7:  (311, 360),
+    8:  (361, 430),
+    9:  (431, 490),
+    10: (491, 550),
+    11: (551, 620),
+    12: (621, 680),
+    13: (681, 730),
+    14: (731, 780),
+    15: (781, 860),
+    16: (861, 920),
+    17: (921, 980),
+    18: (981, 1050),
+}
+
+_CHAPTER_HEADING_RE: Final[re.Pattern] = re.compile(
+    r"\b(?:chapter|ch\.?)\s*(\d{1,2})\b",
+    re.IGNORECASE,
+)
+
 from config.settings import (
     RGPV_OS_UNIT_TOPICS,
     RGPV_OS_UNITS,
@@ -108,6 +135,35 @@ class MetadataTagger:
             primary_topic = self._unit_names.get(best_unit, "Operating Systems").split(":")[0].strip()
 
         return best_unit, primary_topic
+
+    @staticmethod
+    def detect_chapter(text: str, page_number: Optional[int] = None) -> Optional[int]:
+        """
+        Auto-detect Galvin chapter number from:
+          1. Explicit 'Chapter N' heading in text
+          2. Page number → chapter via Galvin page range map
+
+        Args:
+            text: Chunk text content.
+            page_number: PDF page number (1-indexed).
+
+        Returns:
+            Chapter number (int) or None if undetectable.
+        """
+        # Strategy 1: explicit chapter heading in text
+        match = _CHAPTER_HEADING_RE.search(text[:500])  # check first 500 chars
+        if match:
+            chapter = int(match.group(1))
+            if 1 <= chapter <= 18:  # Galvin has 18 chapters
+                return chapter
+
+        # Strategy 2: page number lookup
+        if page_number is not None:
+            for ch_num, (start, end) in _GALVIN_CHAPTER_PAGE_MAP.items():
+                if start <= page_number <= end:
+                    return ch_num
+
+        return None
 
     def tag_pyq_metadata(
         self,

@@ -9,6 +9,22 @@ from utils.logger import get_logger
 logger = get_logger(__name__)
 
 
+def _login_huggingface() -> None:
+    """Login to HuggingFace Hub if HF_TOKEN is set in environment."""
+    import os
+    token = os.getenv("HF_TOKEN")
+    if token:
+        try:
+            from huggingface_hub import login
+            login(token=token, add_to_git_credential=False)
+            logger.info("HuggingFace Hub authenticated via HF_TOKEN")
+        except Exception as err:
+            logger.debug("HF login skipped: %s", err)
+
+
+_login_huggingface()
+
+
 class HFEmbedder:
     """Wrapper around SentenceTransformer for generating dense vector embeddings."""
 
