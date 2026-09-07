@@ -26,6 +26,7 @@ class Intent(str, Enum):
     """Classified user query intent."""
     CONCEPT_EXPLANATION = "concept"
     PYQ_RETRIEVAL = "pyq"
+    PYQ_ANALYTICS = "analytics"
     TOPIC_IMPORTANCE = "importance"
     SYLLABUS_LOOKUP = "syllabus"
     UNKNOWN = "unknown"

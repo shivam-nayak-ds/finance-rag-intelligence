@@ -15,6 +15,7 @@ from retrieval.cohere_reranker import CohereReranker
 from retrieval.hybrid_retriever import HybridRetriever
 from tools.confidence_scorer import ConfidenceScorer
 from tools.query_rewriter import QueryRewriter
+from tools.sql_query_engine import SQLQueryEngine
 from utils.logger import get_logger
 
 logger = get_logger(__name__)
@@ -43,6 +44,7 @@ class RAGPipeline:
         llm_chain: Optional[LLMChain] = None,
         memory: Optional[ConversationMemory] = None,
         long_term: Optional[LongTermMemory] = None,
+        sql_engine: Optional[SQLQueryEngine] = None,
         top_n: int = RERANK_TOP_N,
     ) -> None:
         self.rewriter = rewriter or QueryRewriter()
@@ -52,6 +54,7 @@ class RAGPipeline:
         self.llm_chain = llm_chain or LLMChain()
         self.memory = memory or get_memory()
         self.long_term = long_term or get_long_term_memory()
+        self.sql_engine = sql_engine or SQLQueryEngine()
         self.top_n = top_n
 
     # ──────────────────────────────────────────
@@ -60,6 +63,17 @@ class RAGPipeline:
 
     def _classify_intent(self, query: str) -> str:
         q = query.lower()
+
+        # Check for analytical / count / table queries first
+        analytical_keywords = [
+            "how many", "count", "kitne", "kitni", "total questions",
+            "list all", "table of", "marks analysis", "frequency",
+            "most asked", "least asked", "repeat count", "year wise",
+            "distribution", "statistics", "analytics",
+        ]
+        if any(k in q for k in analytical_keywords):
+            return Intent.PYQ_ANALYTICS
+
         pyq_keywords = ["pyq", "previous year", "purane question", "exam mein", "kitni baar", "2018", "2019", "2020", "2021", "2022", "2023", "2024"]
         importance_keywords = ["important", "important topics", "kya padhein", "kitna important", "frequently", "baar baar"]
         syllabus_keywords = ["syllabus", "unit", "kya kya aata hai", "course", "rgpv syllabus"]
@@ -104,6 +118,23 @@ class RAGPipeline:
         # ── Step 2: Intent classification ──
         intent = self._classify_intent(query)
         logger.info("Intent: %s", intent)
+
+        # ── Step 2b: Direct routing for analytical / statistical queries to SQL ──
+        if intent == Intent.PYQ_ANALYTICS:
+            logger.info("Routing to SQLQueryEngine for analytical query")
+            result = self.sql_engine.execute_and_format(query)
+            total_ms = (time.perf_counter() - pipeline_start) * 1000
+            result.total_latency_ms = total_ms
+
+            if session_id:
+                self.memory.add_assistant_turn(session_id, result.answer, intent=intent)
+                self.long_term.log_query(
+                    session_id=session_id,
+                    query=query,
+                    intent=intent,
+                    confidence=str(result.confidence),
+                )
+            return result
 
         # ── Step 3: Query rewriting (with conversation context) ──
         context_hint = self.memory.get_context_summary(session_id) if session_id else ""
