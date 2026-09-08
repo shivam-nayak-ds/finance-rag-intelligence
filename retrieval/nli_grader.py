@@ -106,15 +106,16 @@ class NLIGrader:
         Returns:
             Tuple of (is_grounded: bool, score: float).
         """
+        # 1. Fail-secure if model is missing or documents list is empty
         if not self._pipeline or not documents:
-            logger.debug("NLI grader unavailable — assuming grounded")
-            return True, 1.0
+            logger.debug("NLI grader unavailable or empty documents — failing secure (ungrounded)")
+            return False, 0.0
 
         cutoff = threshold if threshold is not None else self.groundedness_threshold
 
-        # Combine top-3 docs as premise
-        combined_context = " ".join(d.text[:300] for d in documents[:3])
-        score = self._nli_score(premise=combined_context, hypothesis=answer[:512])
+        # 2. Use full text chunks instead of character cutoffs
+        combined_context = " ".join(d.text for d in documents[:3])
+        score = self._nli_score(premise=combined_context, hypothesis=answer)
 
         is_grounded = score >= cutoff
         logger.info(
@@ -146,4 +147,4 @@ class NLIGrader:
             return 0.0
         except Exception as err:
             logger.warning("NLI score failed: %s", err)
-            return 0.5  # neutral fallback
+            return 0.0  # Fail secure on exception

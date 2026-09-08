@@ -107,8 +107,12 @@ class Citation(BaseModel):
             display = "RGPV OS Syllabus"
             if doc.unit:
                 display += f", Unit {doc.unit}"
+        elif doc.source_type == SourceType.WEB:
+            display = f"Web: {doc.topic or 'Online Reference'}"
         else:
             display = doc.topic or "Unknown Source"
+
+        web_url = doc.book if (doc.book and (doc.book.startswith("http://") or doc.book.startswith("https://"))) else None
 
         return cls(
             source_number=source_number,
@@ -120,6 +124,7 @@ class Citation(BaseModel):
             page=doc.page_start,
             year=doc.year,
             marks=doc.marks,
+            url=web_url,
         )
 
     model_config = {"use_enum_values": True}

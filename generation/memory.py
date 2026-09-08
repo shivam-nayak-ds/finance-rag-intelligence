@@ -78,6 +78,17 @@ class ConversationMemory:
         if intent:
             session.last_intent = intent
 
+    def add_turn(
+        self,
+        session_id: str,
+        user_message: str,
+        assistant_message: str,
+        citations: Optional[List[str]] = None,
+    ) -> None:
+        """Add both user and assistant messages for a completed turn."""
+        self.add_user_turn(session_id, user_message)
+        self.add_assistant_turn(session_id, assistant_message)
+
     def get_history_messages(self, session_id: str) -> List[Dict[str, str]]:
         """Return full history as OpenAI message list — injected into LLM prompt."""
         if session_id not in self._sessions:
